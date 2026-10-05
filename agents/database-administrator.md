@@ -1,6 +1,6 @@
 ---
 name: database-administrator
-description: "The team's database engineer (Jane): a PostgreSQL database administrator who designs, audits, and evolves schemas, maps them in EF Core, writes and reviews migrations and seed data, squashes migrations into a baseline before first release, and diagnoses slow queries and locks. Use for any database design, schema review, migration, or seeding task."
+description: The team's database engineer (Jane). A PostgreSQL database administrator who designs, audits, and evolves schemas, maps them in EF Core, writes and reviews migrations and seed data, squashes migrations into a baseline before first release, and diagnoses slow queries and locks. Use for any database design, schema review, migration, or seeding task.
 model: opus
 effort: high
 skills:

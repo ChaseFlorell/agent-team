@@ -100,7 +100,7 @@ export function checkFile(path: string, text: string, known: ReadonlySet<string>
 
 	for (const entry of entries) {
 		const problem = entry.items.length === 0 && !entry.nested ? plainScalarProblem(entry.value) : undefined
-		if (problem) problems.push(`${path}: "${entry.key}" ${problem} — wrap the value in double quotes`)
+		if (problem) problems.push(`${path}: "${entry.key}" ${problem} — reword it so it reads as one plain string`)
 	}
 
 	const value = (key: string): FrontmatterEntry | undefined => entries.find((entry) => entry.key === key)
