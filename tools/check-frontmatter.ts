@@ -66,6 +66,15 @@ export function parseFrontmatter(text: string): Frontmatter {
 	return { entries }
 }
 
+/** Why an unquoted value would not parse as one plain YAML string, if it would not. */
+export function plainScalarProblem(value: string): string | undefined {
+	if (value === '' || /^["'[{|>]/.test(value)) return undefined
+	if (value.includes(': ') || value.endsWith(':')) return 'holds an unquoted ": ", which YAML reads as a nested mapping'
+	if (value.includes(' #')) return 'holds an unquoted " #", which YAML reads as the start of a comment'
+	if (/^[-?:,\]}#&*!%@`]/.test(value)) return `starts with "${value[0]}", which YAML reserves`
+	return undefined
+}
+
 /** Skill names a `skills:` entry may use: inline `[a, b]` or a block list. */
 function listed(entry: FrontmatterEntry): string[] {
 	if (entry.items.length > 0) return entry.items
@@ -87,6 +96,11 @@ export function checkFile(path: string, text: string, known: ReadonlySet<string>
 	for (const entry of entries) {
 		if (seen.has(entry.key)) problems.push(`${path}: "${entry.key}" is declared twice`)
 		seen.add(entry.key)
+	}
+
+	for (const entry of entries) {
+		const problem = entry.items.length === 0 && !entry.nested ? plainScalarProblem(entry.value) : undefined
+		if (problem) problems.push(`${path}: "${entry.key}" ${problem} — wrap the value in double quotes`)
 	}
 
 	const value = (key: string): FrontmatterEntry | undefined => entries.find((entry) => entry.key === key)
