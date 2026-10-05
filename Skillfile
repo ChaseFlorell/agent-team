@@ -1,0 +1,41 @@
+# agent-team — a generic full-stack team of role agents and the skills they preload.
+#
+# `skillfile install` here deploys every agent and skill to ~/.claude, so the
+# team is available in every project. A project that wants the team for every
+# contributor pins these files from GitHub in its own Skillfile instead.
+#
+# Docs: https://github.com/eljulians/skillfile
+
+install  claude-code  global
+
+# --- Agents ---
+local  agent  agents/adversary.md
+local  agent  agents/ai-author.md
+local  agent  agents/auditor.md
+local  agent  agents/backend.md
+local  agent  agents/critic.md
+local  agent  agents/database-administrator.md
+local  agent  agents/infrastructure.md
+local  agent  agents/spec-author.md
+local  agent  agents/spec-reviewer.md
+local  agent  agents/test-writer.md
+local  agent  agents/ux.md
+
+# --- Skills ---
+# Declarative Gherkin scenario design; spec-author preloads it.
+github  skill  thebushidocollective/han  plugins/tools/cucumber/skills/cucumber-best-practices
+
+# Names are explicit: every source file is called SKILL.md, so without a name
+# they would all infer the same one and overwrite each other on install.
+local  skill  agent-persona  skills/agent-persona/SKILL.md
+local  skill  clarify-requirements  skills/clarify-requirements/SKILL.md
+local  skill  coding-conventions  skills/coding-conventions/SKILL.md
+local  skill  deliver-change  skills/deliver-change/SKILL.md
+local  skill  design-cloud-infrastructure  skills/design-cloud-infrastructure/SKILL.md
+local  skill  design-ef-core-model  skills/design-ef-core-model/SKILL.md
+local  skill  design-web-ui  skills/design-web-ui/SKILL.md
+local  skill  manage-ef-core-migrations  skills/manage-ef-core-migrations/SKILL.md
+local  skill  postgres-dba  skills/postgres-dba/SKILL.md
+local  skill  review-work  skills/review-work/SKILL.md
+local  skill  test-from-scenarios  skills/test-from-scenarios/SKILL.md
+local  skill  write-agent-instructions  skills/write-agent-instructions/SKILL.md
