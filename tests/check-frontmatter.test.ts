@@ -91,3 +91,15 @@ test('GivenTree_WhenMainRuns_ThenExitCodeFollowsProblems', () => {
 	writeFileSync(join(root, 'agents/x.md'), agent('skills:\n  - nope\n'))
 	assert.equal(main(root), 1)
 })
+
+test('GivenUnquotedColonInValue_WhenChecked_ThenReportsMapping', () => {
+	assert.match(checkFile('agents/x.md', agent().replace('description: d', 'description: Jane (DBA): designs schemas')).join('\n'), /"description" holds an unquoted ": "/)
+})
+
+test('GivenQuotedColonInValue_WhenChecked_ThenAccepted', () => {
+	assert.deepEqual(checkFile('agents/x.md', agent().replace('description: d', 'description: "Jane (DBA): designs schemas"')), [])
+})
+
+test('GivenUnquotedHashInValue_WhenChecked_ThenReportsComment', () => {
+	assert.match(checkFile('skills/a/SKILL.md', '---\nname: a\ndescription: Use for C #9 work\n---\n').join('\n'), /unquoted " #"/)
+})
