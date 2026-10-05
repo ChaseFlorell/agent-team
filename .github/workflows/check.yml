@@ -18,4 +18,4 @@ jobs:
           node-version: 24
       - run: node tools/check-generic-instructions.ts
       - run: node tools/check-frontmatter.ts
-      - run: node --test tests/
+      - run: node --test tests/*.test.ts
