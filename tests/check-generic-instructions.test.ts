@@ -25,6 +25,13 @@ test('GivenReferenceWrappedAcrossLines_WhenChecked_ThenCaught', () => {
 	assert.equal(checkText('a.md', 'see ADR\n0147 for why').length, 1)
 })
 
+test('GivenSchemeSkill_WhenItNamesTheScheme_ThenAllowedButProductStillRefused', () => {
+	const path = 'skills/spec-driven-development/SKILL.md'
+	assert.deepEqual(checkText(path, 'in .spec/features, tag @REQ-ORD-001, ADR-NNNN, CONV-NNN, lesson 0001, traceability.md'), [])
+	assert.equal(checkText(path, 'HPAC rules').length, 1)
+	assert.ok(checkText('skills/other/SKILL.md', 'in .spec/features').length > 0)
+})
+
 test('GivenTestSpecFile_WhenChecked_ThenNotASpecPath', () => {
 	assert.deepEqual(checkText('a.md', 'run foo.spec.ts'), [])
 })

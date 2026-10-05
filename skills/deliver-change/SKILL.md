@@ -182,149 +182,44 @@ stronger one:
 
 ## Document
 
-### Specification directory
+### Specification
 
-- Everything the specification chain reads — scenarios, constraint pages,
-  decisions, lessons, conventions, generated matrices — lives under one root,
-  apart from guides. The project skill names it.
-- An index of specification files is generated from their frontmatter and
-  drift-checked in CI, never kept by hand; a hand-kept table falls behind.
-- Every relative link in tracked markdown is checked before commit and in CI.
-  Moving a file rewrites every reference to it in the same commit.
-- The paths live in one module every tool imports; a test ties the copies in
-  hooks and workflows, which cannot import it, to that module.
-- A generated map ties each claim to the step definitions that bind it. A
-  built claim with a step no definition matches fails CI; the specification
-  wins, so fix the definition, or the scenario only when it was wrong.
+The specification directory, scenarios, claim IDs, constraint pages,
+decisions, conventions, lessons, the generated index and matrix, the
+coverage exemption, and the generator that creates and checks them all are
+the [`spec-driven-development`](../spec-driven-development/SKILL.md) skill.
+What this skill adds is how they ride in a change:
 
-### Scenarios
-
-- Every user-facing requirement has a scenario in a `.feature` file. A change
-  that adds or changes behavior adds or updates it in the same pull request —
-  mandatory.
-- Write the scenario first; when the implementation is wrong, correct the
-  scenario, not the conversation.
-- The PR body names what changed upstream — scenario, page, boundary — because
-  it becomes the squash commit message.
+- Specify in the same pull request as the code: a behaviour change adds or
+  amends its scenario; a real architecture decision adds its ADR; a bug fix
+  that reveals a specification gap adds its lesson, and a process lesson
+  also updates the skill or convention that would have prevented it. All
+  mandatory; a fix that reveals nothing writes no lesson.
+- A genuinely ambiguous need goes through
+  [`clarify-requirements`](../clarify-requirements/SKILL.md) before any of
+  that is written.
+- The PR body names what changed upstream — scenario, page, boundary, record
+  — because it becomes the squash commit message, and cites the claims it
+  satisfies or, for a change that alters no behaviour, the claims it
+  preserves under the project's closed exemption list. Run the coverage check
+  locally, not only in CI.
 - A scenario may merge ahead of its implementation, marked not built and
   naming the open issue that will build it; that issue does not close while
-  the scenario is still unbuilt.
-- `@ignore` and superseded scenarios: see
+  the scenario is unbuilt. `@ignore` and superseded scenarios: see
   [`test-from-scenarios`](../test-from-scenarios/SKILL.md) "Scenarios".
-- Each area's specification page records what **not** to build. A change that
-  draws a new boundary writes it there, not only in the pull request.
-- Component READMEs describe scope and implementation status without
-  duplicating the specification.
-- **Size the documentation to the change.** Update only the pages whose
-  content the change actually alters. A one-line change does not touch a
-  dozen pages.
-
-#### Author a scenario
-
-- **Read first**: the specification index and its authority rules; the
-  area's page and its supporting page; every decision record that bears on the
-  behavior; the traceability matrix, for what is already claimed. A need that
-  is genuinely ambiguous goes through
-  [`clarify-requirements`](../clarify-requirements/SKILL.md).
-- **Write** the scenario in the area's existing `.feature` file: declarative
-  `Given`/`When`/`Then` that names the trigger and asserts something
-  observable. No UI mechanics outside a browser-tagged scenario, no class
-  names, and no endpoint the interfaces page lacks.
-- **A claim ID per new scenario**: the area's next unused number, never reused
-  or renumbered.
-- **Tags**: mark the scenario not built until it is, with the project's tag
-  naming the open issue that will build it; tag browser-observable behavior
-  with the browser tag.
-- **An out-of-scope line** in the supporting page wherever someone could
-  over-deliver; supporting detail that does not fit Gherkin (a table, a
-  validation order, a diagram) goes there too.
-- **Regenerate** the generated specification files before finishing, so a
-  duplicate, malformed, or missing ID fails there, not in review.
-
-### Exemptions from scenario coverage
-
-- A behavior-changing pull request that changes no scenario fails the
-  project's coverage check. The scenario must belong to an area the changed
-  code serves, and must change in what it says: a whitespace, comment, or
-  unrelated-area edit covers nothing.
-- An exemption is only for a change that alters no behavior, and cites the
-  claims the change leaves standing — claims of the areas the changed code
-  serves.
-- Pick the exemption category from the project's closed list, where the pull
-  request template shows it. Never invent one.
-- Run the check locally, not only in CI. When the tool reads its inputs from
-  the environment, a bare run checks nothing and always passes.
+- Number a record after rebasing (see "Commit, rebase, claim identifiers"),
+  and regenerate the generated files before finishing, so a duplicate or
+  missing ID fails there, not in review.
 - A bot that opens pull requests (a dependency updater) writes its own
-  exemption from its configuration. If the check fails on one, fix the
-  citation in that configuration; never hand-edit the pull request body.
-
-### Lessons
-
-- A bug fix that reveals a specification gap writes a lesson in the same pull
-  request: symptom, root cause, spec delta, and the claim that now proves it.
-  A fix that reveals nothing writes none.
-- **Every lesson declares its kind** — product, process, or incident — and owes
-  what that kind owes. A tool checks it.
-- **Product lesson**: its remedy is a claim and a scenario; the spec delta
-  names the claim. No skill change: restating product behavior in a skill
-  creates a second place to drift from the specification.
-- **Process lesson** (tooling, CI, hooks, conventions, delivery, how agents
-  work): also update the skill or convention that would have prevented it, in
-  the same pull request, and name it in the lesson's `## Skill` section. The
-  skill holds the general rule; the lesson keeps the incident. Agents read
-  skills, not the lessons index.
-  - Update the generic skill when the rule transfers to any project, and the
-    project's companion skill when the rule names the project's tools or
-    paths.
-  - Name the skill it changed once; no footer naming the generic skill too.
-- **Incident** (an operational postmortem: something failed in running the
-  system): symptom and root cause are what it owes. It may also name a skill
-  it changed; never invent a rule just to give it one.
-- A lesson keeps the project's sections and no others; extra detail is a
-  subsection of one of them.
-
-### ADRs
-
-- One ADR per real architecture decision, in the same pull request —
-  mandatory. A real decision is a new rule about the system, a reversed one, a
-  privacy or data boundary, or an architecture choice (technology, rejected
-  alternative, durable trade-off). UI polish, a bug fix, and a routine detail
-  with no rejected alternative need none.
-- **Not an ADR**: a new process, tooling, or agent-workflow rule is a
-  convention, in the project's conventions directory, edited in place as it
-  changes; interface detail (wording, layout, a field's behavior) is a
-  scenario.
-- **Write it from the project's template**: one status line under the title,
-  then context, decision drivers (optional), considered options, decision,
-  consequences. Considered options is required; a decision with no
-  alternative worth naming says so there.
-- **An accepted ADR is immutable.** Only its status changes, and a link's
-  target when the file it points to moves or is deleted (point it at a
-  permalink).
-  - A change to the decision is a new ADR. The old one's status becomes
-    `superseded`, its status line linking the new one.
-  - A new ADR that changes part of an older one still supersedes the whole
-    record, and lists what of it still holds — by link or claim ID — never
-    restating it, so each rule keeps one source.
-  - Never append an amendment, rewrite the body, or delete a record. A typo in
-    an accepted ADR stays.
-- **Statuses**: `proposed` (may change freely), `accepted`, `rejected`,
-  `deprecated`, `superseded`. An accepted record moves only to `superseded` or
-  `deprecated`, whose status line links the record that replaced or retired
-  it; the other three are terminal. There is no partial supersession.
-- An ADR's declared status agrees with its own status line, and a successor it
-  names exists. Tools check both, and a CI check fails a pull request whose
-  diff to an accepted ADR touches anything but its status.
-- Number it after rebasing (see "Commit, rebase, claim identifiers"). Keep the
-  filename and the `# ADR-NNNN` heading in step.
-- Keep rationale and requirements apart: never restate a scenario's acceptance
-  criteria in an ADR, and never justify a technology or pattern choice in a
-  `.feature` file or its README.
-- An ADR that changes a technology choice or how the system is broken up (new
-  or replaced framework, language, runtime, hosting, topology, service split or
-  merge) updates the root `README.md` in the same pull request — the fact and
-  the ADR link, not the rationale. Skip routine or reversed-without-effect
-  decisions.
+  exemption from its configuration; fix the citation there, never the body.
+- An ADR that changes a technology choice or how the system is broken up
+  updates the root `README.md` in the same pull request — the fact and the
+  link, not the rationale.
+- Component READMEs describe scope and implementation status without
+  duplicating the specification. **Size the documentation to the change**:
+  update only the pages whose content the change alters.
+- Moving a file rewrites every reference to it in the same commit; every
+  relative link is checked before commit and in CI.
 
 ### Markdown
 

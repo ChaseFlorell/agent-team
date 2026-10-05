@@ -59,11 +59,18 @@ export function missingSkillFiles(root: string = ROOT): string[] {
 }
 
 // A pattern carries its own flags; most are case-insensitive. `why` is what
-// the author sees.
+// the author sees. A pattern marked `scheme` names the specification scheme
+// itself — its directory, its generated files, its ID forms — which only the
+// skill that defines that scheme may spell out; everywhere else it is a
+// citation of one project's record.
 export interface Forbidden {
 	pattern: RegExp
 	why: string
+	scheme?: true
 }
+
+/** The skills that define the specification scheme, and so may name its parts. */
+export const SCHEME_SKILLS: readonly string[] = ['skills/spec-driven-development/']
 
 export const FORBIDDEN: readonly Forbidden[] = [
 	{ pattern: /hpac/i, why: 'names a product' },
@@ -72,13 +79,14 @@ export const FORBIDDEN: readonly Forbidden[] = [
 	{ pattern: /aviation|occurrence report|\bpilot|pilote/i, why: 'names a product domain' },
 	{ pattern: /safety ?officer|(?<!test )\breporter/i, why: 'names a product role' },
 	{ pattern: /typeform|gemini|graphify|reqnroll/i, why: 'names a tool or provider one project chose' },
-	{ pattern: /\bADR-\d/i, why: 'cites a decision record by number' },
-	{ pattern: /\blesson \d/i, why: 'cites a lesson by number' },
-	{ pattern: /\b(REQ|CON)-[A-Z]+-\d/, why: 'cites a claim by ID' },
-	{ pattern: /CONV-\d/, why: 'cites a convention by number' },
+	{ pattern: /\bADR-\d/i, why: 'cites a decision record by number', scheme: true },
+	{ pattern: /\blesson \d/i, why: 'cites a lesson by number', scheme: true },
+	{ pattern: /\b(REQ|CON)-[A-Z]+-\d/, why: 'cites a claim by ID', scheme: true },
+	{ pattern: /CONV-\d/, why: 'cites a convention by number', scheme: true },
 	// Case-sensitive: "the Worker" is one product's background service, and "the worker" is a plain noun.
 	{ pattern: /\b[Tt]he Worker\b/, why: 'names a product\'s background service' },
-	{ pattern: /\.spec\/|docs\/(decisions|lessons)\/|\btools\/[\w/-]+\.|\bsrc\/(web|HpacSafety)/i, why: 'names a path in one repository' },
+	{ pattern: /\.spec\//i, why: 'names a path in one repository', scheme: true },
+	{ pattern: /docs\/(decisions|lessons)\/|\btools\/[\w/-]+\.|\bsrc\/(web|HpacSafety)/i, why: 'names a path in one repository' },
 ]
 
 // An instruction file names a topic, never the record that holds it. A
@@ -91,23 +99,27 @@ const SEP = `[\\s${DASH}#]*`
 const HYPHEN = `[${DASH}]\\s*`
 export const RECORD_REFERENCES: readonly Forbidden[] = [
 	// ".spec" with or without a slash, but not a test file: foo.spec.ts, .tsx, .js, .mjs, .cjs, .jsx.
-	{ pattern: /\.spec\b(?!\.[cm]?[jt]sx?\b)|(?<![\w/-])(traceability\.md|claims(\.schema)?\.json|area-paths\.json)\b/i, why: 'references a specification path' },
-	{ pattern: new RegExp(`\\bADR${SEP}\\d{3,4}`, 'i'), why: 'references a decision record by number' },
-	{ pattern: new RegExp(`\\bCONV${SEP}\\d{3}`, 'i'), why: 'references a convention by number' },
-	{ pattern: new RegExp(`\\b(REQ|CON)${HYPHEN}[A-Z]+${HYPHEN}\\d{2,}`, 'i'), why: 'references a claim by ID' },
-	{ pattern: new RegExp(`\\blessons?(${SEP}\\d{3,4}\\b|\\s*[#${DASH}]\\s*\\d+|/\\d)`, 'i'), why: 'references a lesson by number' },
+	{ pattern: /\.spec\b(?!\.[cm]?[jt]sx?\b)|(?<![\w/-])(traceability\.md|claims(\.schema)?\.json|area-paths\.json)\b/i, why: 'references a specification path', scheme: true },
+	{ pattern: new RegExp(`\\bADR${SEP}\\d{3,4}`, 'i'), why: 'references a decision record by number', scheme: true },
+	{ pattern: new RegExp(`\\bCONV${SEP}\\d{3}`, 'i'), why: 'references a convention by number', scheme: true },
+	{ pattern: new RegExp(`\\b(REQ|CON)${HYPHEN}[A-Z]+${HYPHEN}\\d{2,}`, 'i'), why: 'references a claim by ID', scheme: true },
+	{ pattern: new RegExp(`\\blessons?(${SEP}\\d{3,4}\\b|\\s*[#${DASH}]\\s*\\d+|/\\d)`, 'i'), why: 'references a lesson by number', scheme: true },
 	{ pattern: /docs\/(decisions|lessons)\//i, why: 'references a record directory' },
 ]
 
 const squash = (text: string): string => text.replace(/\s+/g, ' ')
 
+/** Whether `path` belongs to a skill that defines the scheme, and so may name its parts. */
+const definesScheme = (path: string): boolean => SCHEME_SKILLS.some((prefix) => path.startsWith(prefix))
+
 /** Every term one file's text may not hold, as `path:line: why (match)`. */
 export function checkText(path: string, text: string): string[] {
 	const problems: string[] = []
 	const lines = text.split('\n')
+	const applies = ({ scheme }: Forbidden): boolean => !(scheme && definesScheme(path))
 	lines.forEach((line, index) => {
 		const reported = new Set<string>()
-		for (const { pattern, why } of FORBIDDEN) {
+		for (const { pattern, why } of FORBIDDEN.filter(applies)) {
 			const match = pattern.exec(line)
 			if (match) {
 				reported.add(squash(match[0]).toLowerCase())
@@ -117,7 +129,7 @@ export function checkText(path: string, text: string): string[] {
 		// The line joined with the next, so a reference wrapped across a line break is
 		// caught; it counts only where it starts, so the next line does not report it again.
 		const joined = index + 1 < lines.length ? `${line}\n${lines[index + 1]}` : line
-		for (const { pattern, why } of RECORD_REFERENCES) {
+		for (const { pattern, why } of RECORD_REFERENCES.filter(applies)) {
 			const match = pattern.exec(joined)
 			if (!match || match.index >= line.length) continue
 			const text = squash(match[0])
