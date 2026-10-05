@@ -2,7 +2,11 @@
 #
 # `skillfile install` here deploys every agent and skill to ~/.claude, so the
 # team is available in every project. A project that wants the team for every
-# contributor pins these files from GitHub in its own Skillfile instead.
+# contributor pins these files from GitHub in its own Skillfile instead, e.g.
+#   github  agent  ChaseFlorell/agent-team  agents/critic.md
+#   github  skill  ChaseFlorell/agent-team  skills/review-work
+# Claude Code prefers a user skill over a project skill of the same name, but a
+# project agent over a user agent: keep a global install at the pinned version.
 #
 # Docs: https://github.com/eljulians/skillfile
 

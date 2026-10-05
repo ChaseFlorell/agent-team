@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  generic-instructions:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,3 +17,5 @@ jobs:
         with:
           node-version: 24
       - run: node tools/check-generic-instructions.ts
+      - run: node tools/check-frontmatter.ts
+      - run: node --test tests/*.test.ts

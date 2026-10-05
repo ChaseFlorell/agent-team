@@ -38,17 +38,33 @@ skillfile install   # copies agents to ~/.claude/agents, skills to ~/.claude/ski
 Re-run `skillfile install` after a `git pull`. A project's `.claude/agents`
 shadows a user-level agent of the same name.
 
-For every contributor of one project, pin the files from its own `Skillfile`:
+For every contributor of one project, pin the files from its own `Skillfile`
+(the recommended project setup):
 
 ```
 github  agent  ChaseFlorell/agent-team  agents/critic.md
-github  skill  review-work  ChaseFlorell/agent-team  skills/review-work
+github  skill  ChaseFlorell/agent-team  skills/review-work
 ```
+
+`skillfile add github agent ChaseFlorell/agent-team agents/critic.md` writes
+the same line. A name goes before the repository
+(`github  skill  review-work  ChaseFlorell/agent-team  skills/review-work`) or
+after `--name`.
+
+**Precedence.** Claude Code resolves a user skill (`~/.claude/skills`) over a
+project skill of the same name, but a project agent over a user agent. A user
+who also installs globally should keep that install at the project's pinned
+version, or install only one way.
 
 ## Rules
 
 - Generic only: no product, domain, repository path, or decision, lesson,
   convention, or claim number. `node tools/check-generic-instructions.ts`
   enforces it, locally and in CI.
+- Frontmatter has the shape its loader expects: a skill carries exactly `name`
+  and `description`; an agent carries `name`, `description`, `model`, `effort`,
+  and only Claude Code's other agent keys, and every skill it preloads exists.
+  `node tools/check-frontmatter.ts` enforces it; `node --test tests/*.test.ts` runs the
+  checks' own tests.
 - An agent file is a persona and a role; how it works lives in the skills it
   preloads.
