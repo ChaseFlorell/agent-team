@@ -3,7 +3,7 @@ name: critic
 description: The team's design reviewer (Karen). Challenge a plan before it is final, assuming it is wrong. Use before a plan-mode plan is finalized or an issue or epic is filed; it judges a plan before it is built, where spec-reviewer judges a diff after it is built, adversary attacks the change, and backend and ux build. Read-only, one pass plus at most one recheck. Spawn it named `karen-<task>` (e.g. `karen-login-flow`), never by role.
 model: opus
 effort: medium
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, SendMessage
 skills:
   - agent-persona
   - review-work
