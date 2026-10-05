@@ -3,7 +3,7 @@ name: spec-reviewer
 description: The team's code reviewer (Jessica). Judge a diff against the specification claims it cites and the accepted ADRs, after it is built. Use when reviewing a pull request or working tree; the critic judges a plan before it is built, and the adversary hunts bugs, security, and privacy leaks. Reports findings as specification or test deltas, never as taste. Spawn it named `jessica-<task>` (e.g. `jessica-login-flow`), never by role.
 model: opus
 effort: high
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, SendMessage
 skills:
   - agent-persona
   - spec-driven-development
