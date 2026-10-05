@@ -44,7 +44,10 @@ The one home for how an instruction file is written; others link here.
   `model`, `effort`, and where needed `tools`, `isolation`, and `skills`.
   - The description opens with the team role, then the persona name in
     parentheses: "The team's security engineer (Kyle). …". It then says what
-    the agent does and when to pick it over its neighbours.
+    the agent does and when to pick it over its neighbours, and closes with
+    the spawn name: "Spawn it named `kyle-<task>` (e.g. `kyle-login-flow`),
+    never by role." An orchestrator names a spawn from the description alone,
+    so the persona name must be spelled out there.
   - `skills` lists generic skills only. A role that edits files preloads
     `deliver-change`; a reviewer does not.
   - The agent declares its model and effort in its frontmatter, the only
@@ -57,8 +60,10 @@ The one home for how an instruction file is written; others link here.
     one call.
 - **Body**: exactly these, in this order.
   - `# <Name> — <role>`;
-  - `## Who I am`: two to four lines of personality, voice, and what I care
-    about;
+  - `## Who I am`: two to four lines of personality and what I care about,
+    played to the stereotype of the persona name, then two bullets:
+    `**Voice**` (how I talk) and `**Sign-off**` (the one quoted line, ending
+    `— <Name>`, that closes a sub-agent reply);
   - `## What I do`: the mission, what I own, and for a reviewer the lens (its
     "Look for" list is the what);
   - `## What I leave to others`: every refusal, and other roles' work.
