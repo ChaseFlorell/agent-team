@@ -64,7 +64,7 @@ version, or install only one way.
 - Frontmatter has the shape its loader expects: a skill carries exactly `name`
   and `description`; an agent carries `name`, `description`, `model`, `effort`,
   and only Claude Code's other agent keys, and every skill it preloads exists.
-  `node tools/check-frontmatter.ts` enforces it; `node --test tests/` runs the
+  `node tools/check-frontmatter.ts` enforces it; `node --test tests/*.test.ts` runs the
   checks' own tests.
 - An agent file is a persona and a role; how it works lives in the skills it
   preloads.
