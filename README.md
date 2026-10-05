@@ -25,6 +25,27 @@ differ.
 Each agent's frontmatter declares its model, effort, tools, and the skills it
 preloads, all under `skills/`.
 
+## Team skills
+
+| Skill | Holds | Use when |
+|---|---|---|
+| `agent-persona` | how a named role agent speaks: voice in session, plain findings | acting as a named role agent |
+| `clarify-requirements` | resolving a genuinely material requirement ambiguity | two readings would build different systems |
+| `coding-conventions` | orient first, stop on a gap, keep the design direct, put a rule where it runs | any code, test, doc, or diagram change |
+| `deliver-change` | issue, worktree, pull request, docs, and CI workflow | creating or editing issues, worktrees, PRs, or checks |
+| `design-cloud-infrastructure` | infrastructure as code: a diagram, least privilege, cost, rollback | designing or changing infrastructure, secrets, backups, deployment |
+| `design-ef-core-model` | a PostgreSQL schema as an EF Core model: relationships, types, indexes, queries | adding or changing an entity, DbContext, relationship, or query shape |
+| `design-web-ui` | accessible, localized, responsive web UI with screenshots | designing or changing a screen, a component, or its copy |
+| `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
+| `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
+| `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
+| `spec-driven-development` | the artifact chain, the specification directory, feature areas, constraint pages, ADRs, conventions, lessons, the glossary, the generated index, and the generator that creates and checks them all | starting a project on the method, or writing a scenario, ADR, convention, or lesson |
+| `test-from-scenarios` | scenario tags, step definitions from the scenario, seeded data, pinned containers | test changes or behaviour that needs verification |
+| `write-agent-instructions` | the agent-file shape, style rules, and the editing procedure that loses no rule | adding, changing, or auditing instructions, a skill, or a role agent |
+
+`cucumber-best-practices`, the Gherkin style guide `spec-author` preloads,
+is pinned from upstream in the `Skillfile` rather than kept here.
+
 ## Install
 
 Everywhere, for you:
@@ -60,7 +81,9 @@ version, or install only one way.
 
 - Generic only: no product, domain, repository path, or decision, lesson,
   convention, or claim number. `node tools/check-generic-instructions.ts`
-  enforces it, locally and in CI.
+  enforces it, locally and in CI. The one carve-out: the skill that defines
+  the specification scheme (`spec-driven-development`) may name the scheme's
+  own directory, generated files, and ID forms.
 - Frontmatter has the shape its loader expects: a skill carries exactly `name`
   and `description`; an agent carries `name`, `description`, `model`, `effort`,
   and only Claude Code's other agent keys, and every skill it preloads exists.

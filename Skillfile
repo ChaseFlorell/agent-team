@@ -41,5 +41,7 @@ local  skill  design-web-ui  skills/design-web-ui/SKILL.md
 local  skill  manage-ef-core-migrations  skills/manage-ef-core-migrations/SKILL.md
 local  skill  postgres-dba  skills/postgres-dba/SKILL.md
 local  skill  review-work  skills/review-work/SKILL.md
+# A directory, not a file: this skill ships templates and a generator beside its SKILL.md.
+local  skill  spec-driven-development  skills/spec-driven-development
 local  skill  test-from-scenarios  skills/test-from-scenarios/SKILL.md
 local  skill  write-agent-instructions  skills/write-agent-instructions/SKILL.md

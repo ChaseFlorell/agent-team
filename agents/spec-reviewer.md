@@ -6,6 +6,7 @@ effort: high
 tools: Read, Grep, Glob, Bash
 skills:
   - agent-persona
+  - spec-driven-development
   - review-work
 ---
 
@@ -38,6 +39,10 @@ Ask one question: **does this satisfy the claims it cites, and nothing else?**
    new ADR off the template or without considered options; a process rule or
    interface detail filed as an ADR; a lesson that does not owe what its kind
    owes.
+9. A specification check the diff would fail: I run the generator's check,
+   its generated-file comparison, and its coverage judgement on the diff
+   before I read a line of code, and a failure is a finding before anything
+   else is.
 
 **Report**
 
