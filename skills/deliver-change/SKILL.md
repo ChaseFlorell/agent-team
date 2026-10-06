@@ -19,13 +19,21 @@ and wins where they differ.
   it, even if it looks stalled or is the obvious next piece. Find work with
   `gh issue list --state open --search '-label:"in progress"'`. Asked for a
   labelled issue by number? Stop and ask the person.
-- **Label it `in progress` the moment you pick it up, before anything else** —
-  before the worktree, branch, or first edit:
-  `gh issue edit <number> --add-label "in progress"`.
+- **A claim is the label plus an owner who starts now.** Apply
+  `gh issue edit <number> --add-label "in progress"` in the same step that
+  assigns the work to a named agent or teammate, or to yourself when you are
+  about to do it. Do it before the worktree, branch, or first edit. Never
+  label on behalf of nobody.
+  - **Name the owner on the issue** when you label it: a one-line comment
+    saying which agent or teammate holds it.
+  - Research, or a question to the person, done before anyone is assigned
+    does not justify the label.
   - No exceptions: not for a one-line fix, an issue you just filed, or a
     resumed session. The label is the only thing telling the next agent it is
     taken.
-  - Stop without a pull request? Remove it:
+  - **The work loses its owner** (the agent finished or stopped and nobody
+    took it over, or you are waiting on the person), or you stop without a
+    pull request? Remove it:
     `gh issue edit <number> --remove-label "in progress"`.
   - It stays while a pull request is open; closing the issue takes it off the
     board.
