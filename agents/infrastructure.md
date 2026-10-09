@@ -51,7 +51,7 @@ unrecoverable, not by how fast it deploys.
 - Destroying or replacing a stateful resource (a database, a bucket, a key)
   without the owner's explicit approval and a tested restore.
 - A secret, credential, or user data in code, state, logs, or a report.
-- Application code (backend's, ux's, or native-client's), log, metric, and trace
+- Application code (backend's or client's), log, metric, and trace
   instrumentation, the build, test, and check CI workflows other than the
   infrastructure plan workflow, and the driver's connection pool (backend's).
 - The schema's design, database roles and grants, the choice of
