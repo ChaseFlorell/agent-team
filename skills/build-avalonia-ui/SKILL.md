@@ -16,7 +16,9 @@ components, and tests, and wins where they differ. For a web UI use
 
 - `build-native-ui` "Read first": the hand-offs, and a gap goes upstream.
 - The designer's hand-off in Avalonia's terms (`design-avalonia-ui` "Hand-off
-  checklist"): the control theme and selectors per component.
+  checklist"): the token each state uses per component, in each variant, and
+  whether it is templated or drawn. The control themes and selectors are
+  yours.
 
 ## Resources
 
@@ -34,8 +36,11 @@ components, and tests, and wins where they differ. For a web UI use
 - Pointed at is `:pointerover`, pressed `:pressed`, keyboard-focused
   `:focus-visible`, disabled `:disabled`, selected `:selected`; each is a
   pseudo-class selector, not code-behind.
+- Use a `ControlTheme` to restyle a control wholesale; use a `Style` to adjust
+  a few properties or to target many controls by selector.
 - Override Fluent by setting the resource keys it already reads, or by adding
-  a theme for your own control; never copy its templates.
+  a theme for your own control; never copy its templates or fight its
+  selectors with specificity tricks.
 - Templated controls are the default. A drawn control (an overridden
   `Render`) supplies its own focus, states, and automation peer.
 

@@ -9,7 +9,7 @@ description: Design a native desktop or mobile UI before it is built, on any sta
 companion skill that names it: `design-avalonia-ui` for Avalonia; a project's
 companions are listed in its agent instructions (`AGENTS.md`). Read every one
 that applies. A stack companion holds the stack's resources, controls, and
-selectors; a project companion holds the project's design-system page,
+states; a project companion holds the project's design-system page,
 components, and tests. The more specific wins where they differ: the project's,
 then the stack's, then this one. For a web UI use `design-web-ui`; the flow,
 accessibility semantics, and copy are `design-ux-flow`.
@@ -18,6 +18,8 @@ accessibility semantics, and copy are `design-ux-flow`.
 
 - The cited claims, and the design-system page: reuse its tokens and
   components before designing a new one.
+- ux's hand-off (`design-ux-flow` "Hand-off"): the flow, accessibility
+  semantics, and copy keys.
 - The platform guidelines for each target: Apple's Human Interface Guidelines,
   Material, or Fluent.
 - Never invent behaviour the claims lack; ask, or hand it to the specification
@@ -84,9 +86,8 @@ theme.
   48) with space between targets.
 - Desktop is compact and pointer-first; touch is roomier. Design both, or say
   which is out of scope.
-- Every action works by keyboard where the platform has one: a focus order
-  that follows reading order, focus always visible, and the platform's
-  shortcuts.
+- Every action works by keyboard where the platform has one: focus always
+  visible, and the platform's shortcuts. The focus order is ux's.
 
 ## Window and screen sizes
 
@@ -102,17 +103,14 @@ theme.
 
 ## Accessibility
 
-The semantics (names, roles, reading and focus order, announcements) are
-ux's, from `design-ux-flow`; the designer draws focus, contrast, and large
-text, and the builder implements the semantics through the platform's
-accessibility APIs, never a parallel mechanism:
+The semantics (names, help text, roles, reading and focus order,
+announcements, decoration) are ux's, from `design-ux-flow`; the builder
+implements them through the platform's accessibility APIs. The designer draws:
 
-- every control that shows no text has an accessible name, and help text
-  where useful;
-- every custom control reports its role, value, and state;
-- decoration is hidden from the accessibility tree;
-- focus order follows reading order, and focus is always visible;
-- honour reduced motion, high contrast, and large text.
+- focus, always visible;
+- AA contrast in every theme;
+- large text, and high contrast;
+- reduced motion.
 
 ## Boards
 
@@ -129,8 +127,8 @@ A design is ready for a builder when it has:
    it lives.
 2. Every token cited by name, and each new value added to the design-system
    page.
-3. The stack's styling per component: its theme or style and the selector or
-   trigger for each state.
+3. Per component, the token each state uses in each theme, and whether it is
+   templated or drawn.
 4. A link to ux's hand-off: the accessible names, roles, focus order, and
    copy keys.
 5. The platform conventions followed for each target, and where the design

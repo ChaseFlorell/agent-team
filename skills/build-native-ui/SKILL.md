@@ -22,6 +22,7 @@ decides, and a gap goes upstream.
   incomplete or ambiguous? Stop and send the question to ux or the designer;
   never guess.
 - The design system's real themes, resources, and components.
+- The focused skills for the UI, the design system, and localization.
 
 ## Build
 
@@ -30,6 +31,8 @@ decides, and a gap goes upstream.
   supported theme defines the same keys.
 - Restyle stock controls by default. A custom-drawn control is for custom
   visuals only and supplies its own focus, states, and accessibility element.
+- Style each component through the stack's theme or style, with the selector
+  or trigger for each state.
 - States come from the hand-off: default, pointed at, pressed, focused,
   disabled, selected, empty, error, and loading, in every theme, under high
   contrast and large text.
