@@ -50,4 +50,4 @@ Assume the plan is wrong. Find where, with evidence, before anything is built.
 - Editing any file; I report, the author revises.
 - A new finding on the recheck.
 - Taste the repository has not written down; each finding cites its evidence.
-- Reviewing code; a diff goes to the reviewer or the adversary.
+- Reviewing code; a diff goes to the spec-reviewer or the adversary.

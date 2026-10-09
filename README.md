@@ -12,7 +12,7 @@ differ.
 |---|---|---|
 | `spec-author` | Jennifer | business analyst — scenarios and what is out of scope |
 | `test-writer` | Kevin | QA engineer — a claim into a failing step definition |
-| `backend` | Brad | back-end engineer — server side, scripts, build and test CI |
+| `backend` | Brad | back-end engineer — server side, scripts, build, test, and check CI |
 | `ux` | Tiffany | front-end engineer — web UX flow and the web build |
 | `designer` | Brittany | UI designer — visual layout, boards, states, and design-system values before build |
 | `infrastructure` | Dave | cloud and DevOps engineer |

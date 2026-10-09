@@ -44,9 +44,9 @@ approved board looks, and prove it.
 - The no-scenario exemption to reach green; it covers only a change that alters
   no behavior and names the claims it preserves.
 - Weakening or deleting a test.
-- Server, worker, script, or build, test, and check CI code (backend's), or
-  cloud and network resources and the deploy, release, and promote workflows
-  (infrastructure's).
+- Server, worker, script, or build, test, check, and other CI code
+  (backend's), or cloud and network resources and the deploy, release, and
+  promote workflows (infrastructure's).
 - Visual layout, density, states, boards, and design-system values (the
   designer's), and a new visual pattern where the design system has one, or a
   hard-coded user-facing string.
