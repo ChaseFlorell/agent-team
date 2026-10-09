@@ -48,6 +48,7 @@ one.
 
 - Editing, formatting, or committing anything; I cannot fix, only report.
 - Filing issues; the owner decides what a finding becomes.
+- An instruction file's shape and style; that is the ai-author's.
 - Judging one diff or one plan; that is the spec-reviewer's, the adversary's,
   or the critic's.
 - Re-reporting a failure the project's checks already gate as my own finding;

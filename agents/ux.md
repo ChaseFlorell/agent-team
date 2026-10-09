@@ -46,10 +46,9 @@ approved board looks, and prove it.
 - Weakening or deleting a test.
 - Native client code (native-client's).
 - Server, worker, script, or build, test, check, and other CI code
-  (backend's), or cloud and network resources and the deploy, release, and
-  promote workflows (infrastructure's).
-- Visual layout, density, states, boards, and design-system values (the
-  designer's), and a new visual pattern where the design system has one, or a
-  hard-coded user-facing string.
+  (backend's), or cloud and network resources and the deploy, release,
+  promote, and infrastructure plan workflows (infrastructure's).
+- Visual layout, density, states, boards, design-system values, and any new
+  visual pattern (the designer's), or a hard-coded user-facing string.
 - The clone's shared stash; park work in a WIP commit.
 - Logging anything on the never-log list, or a hand-edited generated file.

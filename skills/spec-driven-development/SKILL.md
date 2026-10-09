@@ -364,8 +364,8 @@ rule in its companion skill and its own check.
    @issue-<N>` against open issues.
 5. Record the founding architecture choices, one `$SDD new adr` each.
 6. Paste `templates/agents-section.md` into `AGENTS.md` and link the index.
-7. `$SDD generate`, then `$SDD check`; wire both into pre-commit and CI
-   ("Checks" below). Commit.
+7. `$SDD generate`, then `$SDD check`; hand wiring both into pre-commit and
+   CI ("Checks" below) to backend. Commit.
 
 ### Add or change behaviour
 
@@ -424,8 +424,8 @@ dependency-free; the exit code is the contract. It fails:
 - a generated file that differs from what `generate` writes.
 
 Run it in the pre-commit hook and in a required CI job, with
-`$SDD generate --check`; a rule that runs only in CI is found on the pull
-request, not before it. The project's own tools — step-definition binding,
+`$SDD generate --check`; backend wires both.
+A rule that runs only in CI is found on the pull request, not before it. The project's own tools — step-definition binding,
 claim results per run, link checks across `docs/` — extend these; they
 never replace them.
 

@@ -10,6 +10,16 @@ names it; its agent instructions (`AGENTS.md`) list it. Read both. The
 companion holds the project's stack, design system, components, and tests, and
 wins where they differ.
 
+## Who does what
+
+Two roles share this skill; a step labelled with one belongs to it alone.
+
+- **designer**: "Design tool", the states and layouts in "Design", and the
+  "Hand-off checklist".
+- **ux**: the flow, keyboard and screen-reader behavior, and copy in
+  "Design", then "Build" and "Tests" from the designer's approved design.
+- Both: "Read first" and "Report".
+
 ## Read first
 
 - The cited claims and the decisions they touch.
@@ -18,6 +28,8 @@ wins where they differ.
 - The focused skills for the UI, the design system, and localization.
 
 ## Design tool
+
+The designer's.
 
 - When the session offers a design tool or design-system connector, use it:
   read tokens and components from it and draw designs in it.
@@ -34,15 +46,17 @@ wins where they differ.
 
 Decide these before code:
 
-- **The flow**: what the user does, in what order.
-- **The four states** of every screen and component that loads or submits:
-  empty, loading, error, success.
-- **The layout at phone width and at desktop width.**
-- **Keyboard and screen-reader behavior**: reading order, focus order, names,
-  and announcements.
-- **The copy in every supported language.**
+- **The flow** (ux): what the user does, in what order.
+- **The four states** (designer) of every screen and component that loads or
+  submits: empty, loading, error, success.
+- **The layout at phone width and at desktop width** (designer).
+- **Keyboard and screen-reader behavior** (ux): reading order, focus order,
+  names, and announcements.
+- **The copy in every supported language** (ux).
 
 ## Build
+
+ux's, from the designer's approved design.
 
 - The smallest design that satisfies the cited claims.
 - Accessible, localized, responsive markup that follows the design system.
@@ -51,16 +65,30 @@ Decide these before code:
   - Every user-facing string and accessible label lives in the locale
     catalogues, never in the markup.
   - Design tokens, not raw colors.
-- A new visual pattern only where the design system has none.
+- A new visual pattern comes from the designer, and only where the design
+  system has none.
 
 ## Tests
+
+ux's.
 
 - Component tests for what you build, written as a user would act: by role and
   label.
 - Acceptance step definitions and browser scenarios belong to the test writer;
   make them pass.
 
+## Hand-off checklist
+
+The designer's. A design is ready for ux to build when it has:
+
+1. A board for every state at phone and desktop width, each linked where it
+   lives.
+2. Every token cited by name, and each new value added to the design system.
+3. Each open behavior question answered or handed to the specification author.
+
 ## Report
 
-- The design choices made, the files changed, and the test results.
-- A screenshot of each changed screen, in the primary language.
+- The design choices made.
+- ux: the files changed, the test results, and a screenshot of each changed
+  screen, in the primary language.
+- designer: the linked boards and the completed hand-off checklist.

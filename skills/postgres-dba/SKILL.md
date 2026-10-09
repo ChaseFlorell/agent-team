@@ -433,11 +433,13 @@ Any change to a table that already holds data follows these rules.
   (`pg_advisory_lock(key)`), e.g. applying migrations at startup.
 - **Vacuum**: leave autovacuum on; tune per table for hot update-heavy tables.
   Watch dead tuples and transaction-id age.
-- **Roles**: the application connects as a least-privilege role that owns
-  nothing it does not need; migrations run as the schema owner. No superuser
-  application connections. Row-level security for tenant isolation.
+- **Roles** (the database administrator's, with every grant): the
+  application connects as a least-privilege role that owns nothing it does not
+  need; migrations run as the schema owner. No superuser application
+  connections. Row-level security for tenant isolation.
 - **Connections**: pool them (PgBouncer, RDS Proxy, or the driver pool); size
-  the pool well below `max_connections`.
+  the pool well below `max_connections`. Backend sizes the driver pool;
+  infrastructure sizes a managed proxy's.
 - **Backups**: point-in-time recovery (WAL archiving or the managed service's
   equivalent) is the backup; `pg_dump` is for copies and migrations. A backup
   never restored is not a backup.
