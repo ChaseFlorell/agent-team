@@ -122,11 +122,17 @@ stronger one:
   fresh `origin/main`. Several agents share the repository; a worktree per
   issue means none switches a branch out from under another.
 - **The repository's worktree tool or convention wins.** When its agent
-  instructions declare one, use it for the worktree's path, branch name,
-  creation, and teardown, and read every `issue-<number>/…` path and branch,
-  and every `git worktree` command, below as that tool's. Only a repository
-  that declares none uses these commands:
+  instructions or companion skill declare one, use it for the worktree's path,
+  branch name, creation, recreation, and teardown, and read every
+  `issue-<number>/…` path and branch, and every `git worktree` command, below
+  as that tool's. Fall back item by item: each of those the repository does not
+  declare uses the commands in this skill, so declaring creation alone still
+  leaves the fallback teardown. The fallback creation is:
   `git fetch origin main && git worktree add -b issue-<number>/<short-description> .claude/worktrees/issue-<number>/<short-description> origin/main`.
+- **Which worktree a spawned agent works in.** When the repository declares a
+  worktree tool, the agent works in the worktree that tool made: the lead
+  creates it and names its path in the brief. The harness's own worktree
+  isolation is the fallback, used only where none is declared.
 - **Keep the primary checkout's `main` current, and change nothing in it.**
   Fast-forward it to the remote: `git -C <primary checkout> pull --ff-only origin main`.
   Do this whenever the remote has moved, and after a pull request merges.
@@ -152,7 +158,7 @@ stronger one:
 - Open every final report to the person with `[#<number> · PR #<pr>]` (just
   `[#<number>]` before the pull request exists), even a one-line report.
 - Do all work in the worktree. It comes down once the pull request is open
-  (step 8), unless the repository's sweep removes it.
+  (step 8), unless the repository's declared sweep removes it.
 - **Never use a bare `git stash` or `git stash pop` in a worktree.** There is
   one stash per clone, shared by every worktree and session: a bare stash
   takes another session's files, and a pop applies whatever entry is on top,
@@ -344,15 +350,19 @@ same numbers.
 8. **Tear down at once**: stop what step 7 started, then remove the worktree
    by the repository's declared teardown, else `git worktree remove`.
    Containers belong to the checkout that started them; removing the worktree
-   first leaves them holding the ports. Never leave a worktree behind — open,
-   failing, or merged. Watching checks, reading logs, and commenting work from
+   first leaves them holding the ports. Where the repository declares no sweep,
+   never leave a worktree behind — open, failing, or merged. Watching checks, reading logs, and commenting work from
    the primary checkout via `gh`.
-   - Where the repository's sweep removes a worktree itself once its pull
-     request is done, the sweep replaces removing the worktree (never remove it
-     by hand); stopping what step 7 started still happens at once.
+   - Where the repository's declared sweep removes a worktree itself once its
+     pull request is done, the sweep replaces removing the worktree (never
+     remove it by hand); stopping what step 7 started still happens at once.
+   - Once the pull request is done and the declared sweep has run but left the
+     worktree (a closed pull request, a dirty tree, a kept branch), report the
+     worktree and the reason to the person. Don't force its removal.
 9. **Watch required checks** from the primary checkout.
-   - A check fails: recreate the worktree on the same branch (no `-b`), by
-     the repository's declared tool or convention, else:
+   - A check fails: if the worktree still exists, go back to it. Only if it is
+     gone, recreate it on the same branch (no `-b`), by the repository's
+     declared recreate form, else:
      `git fetch origin issue-<number>/<short-description> && git worktree add .claude/worktrees/issue-<number>/<short-description> issue-<number>/<short-description>`.
      Fix, commit, rebase, push each fix, and repeat steps 7 and 8.
    - Green, without a merge queue: fetch and confirm
