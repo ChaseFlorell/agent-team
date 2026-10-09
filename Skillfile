@@ -40,6 +40,7 @@ local  skill  deliver-change  skills/deliver-change/SKILL.md
 local  skill  design-avalonia-ui  skills/design-avalonia-ui/SKILL.md
 local  skill  design-cloud-infrastructure  skills/design-cloud-infrastructure/SKILL.md
 local  skill  design-ef-core-model  skills/design-ef-core-model/SKILL.md
+local  skill  design-native-ui  skills/design-native-ui/SKILL.md
 local  skill  design-web-ui  skills/design-web-ui/SKILL.md
 local  skill  manage-ef-core-migrations  skills/manage-ef-core-migrations/SKILL.md
 local  skill  postgres-dba  skills/postgres-dba/SKILL.md

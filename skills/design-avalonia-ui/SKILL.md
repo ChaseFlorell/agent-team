@@ -5,35 +5,27 @@ description: Design an Avalonia UI before it is built — tokens as theme-aware 
 
 # Design an Avalonia UI
 
-**Project rules.** A project may extend this skill with a companion skill that
-names it; its agent instructions (`AGENTS.md`) list it. Read both. The
-companion holds the project's design-system page, components, and tests, and
-wins where they differ. For a web UI use `design-web-ui`.
+**Project rules.** This skill is the Avalonia layer of `design-native-ui`, the
+generic skill it extends: read both, and this one wins where they differ. A
+project may extend this skill with a companion skill that names it; its agent
+instructions (`AGENTS.md`) list it. Read it too. The companion holds the
+project's design-system page, components, and tests, and wins where they
+differ. For a web UI use `design-web-ui`.
 
 ## Read first
 
-- The cited claims, and the design-system page: reuse its tokens and
-  components before designing a new one.
-- Never invent behavior the claims lack; ask, or hand it to the specification
-  author.
+- `design-native-ui` "Read first": the cited claims and the design-system
+  page, and never invented behaviour.
 
 ## Design tool
 
-- When the session offers a design tool or design-system connector, use it:
-  read tokens and components from it and render boards in it.
-- Boards there use the project's tokens by name, never copied values, and
-  synthetic data only: nothing real leaves the project.
-- The design-system page wins where the tool differs; a mismatch is a question
-  for the person, not a pick. A new value lands on the page first, then in the
-  tool and the theme dictionaries.
-- Link each board in the hand-off; a tool board is checked against a
-  real-theme screenshot before it is approved.
-- No such tool? Work from the design-system page and the real themes.
+- As `design-native-ui` "Design tool". A new value lands on the page first,
+  then in the tool and the theme dictionaries.
 
 ## Tokens
 
-- Every color, size, spacing, radius, font, and duration is a named resource,
-  cited from the design-system page, never copied as a literal.
+- Every token from `design-native-ui` "Tokens" is a named resource, never a
+  literal.
 - A value that changes with the theme is a `DynamicResource`; a constant
   (spacing, radius) may be a `StaticResource`.
   - `StaticResource` resolves once at load and never follows a theme switch.
@@ -56,41 +48,34 @@ wins where they differ. For a web UI use `design-web-ui`.
 
 ## States
 
-Design every state on every component, in both themes:
+Design every state in `design-native-ui` "States" on every component, in both
+the Light and Dark themes:
 
-- default, pointed at (`:pointerover`), pressed (`:pressed`), keyboard-focused
-  (`:focus-visible`), disabled (`:disabled`), selected (`:selected`), empty,
-  error, and loading.
+- pointed at is `:pointerover`, pressed `:pressed`, keyboard-focused
+  `:focus-visible`, disabled `:disabled`, and selected `:selected`.
 - Each state is a pseudo-class selector on the control theme, not code-behind.
-- A state differs by more than color alone, and keeps AA contrast in both
-  themes.
 
 ## Density and layout
 
-- Desktop is compact and pointer-first; touch needs targets of at least 44
-  logical pixels with space between them. Design both, or say which is out
-  of scope.
-- Spacing and sizes sit on one grid; align edges and text baselines on it.
-- Layout survives text growth and every supported language: no fixed widths on
-  text.
+- As `design-native-ui` "Input and density" and "Window and screen sizes":
+  desktop and touch density, targets, the grid, and text growth.
 
 ## Accessibility
 
 - Set `AutomationProperties.Name` (and `HelpText` where useful) on every
   control that shows no text; hide decoration from the tree.
-- Focus order follows reading order; focus is always visible.
-- Honor reduced motion and the system's contrast settings.
+- The rest as `design-native-ui` "Accessibility": focus order and visibility,
+  reduced motion, and the system's contrast settings.
 
 ## Boards
 
-- Render each component and screen in Light and Dark, every state, at desktop
-  and touch density, from the real themes or the design tool, never a
-  hand-drawn mock-up.
-- Review boards as screenshots; the builder's screenshots must match them.
+- As `design-native-ui` "Boards": Light and Dark, every state, at desktop and
+  touch density, from the real themes or the design tool.
 
 ## Hand-off checklist
 
-A design is ready for a builder when it has:
+A design is ready for a builder when it has `design-native-ui` "Hand-off
+checklist", in Avalonia's terms:
 
 1. Boards for every theme, state, and density, each linked where it lives.
 2. Every token cited by name, and each new value added to the design-system

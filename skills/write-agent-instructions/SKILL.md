@@ -1,6 +1,6 @@
 ---
 name: write-agent-instructions
-description: How to write and maintain agent instructions — the agent-file shape, style rules, the generic, split, and repository-specific kinds, and the editing procedure that loses no rule. Use when adding, changing, or auditing the agent instructions, a skill, or a role agent.
+description: How to write and maintain agent instructions — the agent-file shape, style rules, the generic, split, and repository-specific kinds, and the editing procedure that loses no rule. Use when adding or changing the agent instructions, a skill, or a role agent, or auditing their shape and style.
 ---
 
 # Write agent instructions

@@ -43,7 +43,8 @@ where they differ.
 3. Other commands, same project arguments:
    - `dotnet ef migrations list` — applied and pending;
    - `dotnet ef migrations has-pending-model-changes` — fails when the model
-     and snapshot differ (EF 8+; run it in CI);
+     and snapshot differ (EF 8+; run it in CI: the database administrator
+     asks for the job, backend owns it);
    - `dotnet ef migrations script <from> <to>` — the SQL; `--idempotent` for a
      script safe at any state;
    - `dotnet ef database update [<target>]` — local databases only.
@@ -90,6 +91,8 @@ pick the mechanism:
 
 - Nobody applies it by hand. The project documents the one mechanism that
   applies migrations, and a change never adds a second.
+- The database administrator chooses that mechanism as a decision record;
+  backend wires the startup path, or infrastructure the deploy step.
 - The mechanisms, for a project choosing one:
   - **At startup**: `Database.MigrateAsync()`. Serialize instances — EF 9+
     takes a migration lock where the provider supports it; otherwise hold a
@@ -98,7 +101,8 @@ pick the mechanism:
     (`dotnet ef migrations bundle`), run before the new code starts.
 - Never `EnsureCreated()` alongside migrations; it bypasses them.
 - EF 9+ `Migrate` fails on pending model changes, so a missing migration is a
-  deploy failure; catch it in CI.
+  deploy failure; catch it in CI (backend's job, at the database
+  administrator's request).
 - Old code runs against the new schema until rollout finishes. Destructive
   changes follow expand → migrate → contract across releases.
 

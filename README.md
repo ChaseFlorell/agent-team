@@ -37,16 +37,17 @@ a design tool, so a `tools` list added to it must keep those.
 | `clarify-requirements` | resolving a genuinely material requirement ambiguity | two readings would build different systems |
 | `coding-conventions` | orient first, stop on a gap, keep the design direct, put a rule where it runs | any code, test, doc, or diagram change |
 | `deliver-change` | issue, worktree, pull request, docs, and CI workflow | creating or editing issues, worktrees, PRs, or checks |
-| `design-cloud-infrastructure` | infrastructure as code: a diagram, least privilege, cost, rollback | designing or changing infrastructure, secrets, backups, deployment |
-| `design-avalonia-ui` | Avalonia design: theme-aware tokens, control themes, pseudo-class states, density, boards, builder hand-off | designing or changing an Avalonia screen, component, or theme |
+| `design-cloud-infrastructure` | infrastructure as code: a diagram, least privilege, cost, rollback, the plan workflow, telemetry, dashboards, and alerts | designing or changing infrastructure, secrets, backups, deployment, telemetry, dashboards, or alerts |
+| `design-avalonia-ui` | Avalonia layer of `design-native-ui`: theme-aware tokens, control themes, pseudo-class states, density, boards, builder hand-off | designing or changing an Avalonia screen, component, or theme |
 | `design-ef-core-model` | a PostgreSQL schema as an EF Core model: relationships, types, indexes, queries | adding or changing an entity, DbContext, relationship, or query shape |
+| `design-native-ui` | stack-agnostic native design: platform conventions, input and density, every state in every theme, platform accessibility, window sizes and safe areas, boards, builder hand-off | designing or changing a native screen, component, or theme on any stack |
 | `design-web-ui` | accessible, localized, responsive web UI with screenshots | designing or changing a screen, a component, or its copy |
 | `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
 | `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
 | `spec-driven-development` | the artifact chain, the specification directory, feature areas, constraint pages, ADRs, conventions, lessons, the glossary, the generated index, and the generator that creates and checks them all | starting a project on the method, or writing a scenario, ADR, convention, or lesson |
 | `test-from-scenarios` | scenario tags, step definitions from the scenario, seeded data, pinned containers | test changes or behaviour that needs verification |
-| `write-agent-instructions` | the agent-file shape, style rules, and the editing procedure that loses no rule | adding, changing, or auditing instructions, a skill, or a role agent |
+| `write-agent-instructions` | the agent-file shape, style rules, and the editing procedure that loses no rule | adding or changing instructions, a skill, or a role agent, or auditing their shape and style |
 
 `cucumber-best-practices`, the Gherkin style guide `spec-author` preloads,
 is pinned from upstream in the `Skillfile` rather than kept here.

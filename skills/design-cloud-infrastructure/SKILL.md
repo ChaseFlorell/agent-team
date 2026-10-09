@@ -1,6 +1,6 @@
 ---
 name: design-cloud-infrastructure
-description: Design and build cloud and network infrastructure as code — a diagram, a reason for every path and permission, cost, rollback, least privilege, and a plan that shows only the intended change. Use when designing or changing infrastructure, networking, secrets, backups, or deployment.
+description: Design and build cloud and network infrastructure as code — a diagram, a reason for every path and permission, cost, rollback, least privilege, and a plan that shows only the intended change. Use when designing or changing infrastructure, networking, secrets, backups, deployment, telemetry collection, dashboards, or alerts.
 ---
 
 # Design cloud infrastructure
@@ -41,10 +41,25 @@ Decide these before code:
   - secrets in the secret store only;
   - never a long-lived cloud key where short-lived federation does the job.
 - Keep tested backups.
-- In CI where possible: validate formatting, run static security checks, and
-  keep a credential-free plan path.
+- **The infrastructure plan workflow** is infrastructure's, the one CI
+  workflow over infrastructure code: on each change it validates formatting,
+  runs static security checks, and plans on a credential-free path. Every
+  other check workflow is backend's.
 - Remove what nothing needs: speculative scaling, and secrets or alarms that
   exist only for retired features.
+
+## Observe
+
+- Collect the logs, metrics, and traces the application emits; backend
+  instruments them, infrastructure collects, stores, and retains them.
+- Dashboards and alerts are infrastructure code, reviewed like any other
+  change.
+- Alert on what a user would notice (errors, latency, saturation, a failed
+  backup or deploy), each with a threshold, an owner, and the first step to
+  take; never an alert nobody acts on.
+- State each signal's retention and cost.
+- Nothing on the never-log list is collected, and no secret or user data
+  reaches a dashboard.
 
 ## Report
 

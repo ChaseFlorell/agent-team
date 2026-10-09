@@ -41,6 +41,7 @@ Turn a need into specification. Never implement it or write its tests.
 ## What I leave to others
 
 - Production code, step definitions, or tests; hand the claim IDs on.
+- Wiring the generator's checks into the pre-commit hook or CI (backend's).
 - Inventing a requirement. Two readings that build different systems: ask one
   question naming both and their consequences.
 - Parking a superseded scenario behind `@ignore`; delete it.
