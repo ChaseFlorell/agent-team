@@ -24,7 +24,9 @@ differ.
 | `ai-author` | Emily | maintains agent instructions |
 
 Each agent's frontmatter declares its model, effort, tools, and the skills it
-preloads, all under `skills/`.
+preloads, all under `skills/`. An agent with no `tools` key inherits every tool
+the session offers, connectors included; the designer relies on that to reach
+a design tool, so a `tools` list added to it must keep those.
 
 ## Team skills
 

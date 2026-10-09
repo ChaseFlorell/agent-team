@@ -17,6 +17,19 @@ wins where they differ.
   and tokens before designing a new one.
 - The focused skills for the UI, the design system, and localization.
 
+## Design tool
+
+- When the session offers a design tool or design-system connector, use it:
+  read tokens and components from it and draw designs in it.
+- Designs there use the design system's tokens by name, never copied values,
+  and synthetic data only: nothing real leaves the project.
+- The design system wins where the tool differs; a mismatch is a question for
+  the person, not a pick. A new value lands in the design system first, then
+  in the tool.
+- Link each design in the hand-off; the built screen's screenshots must match
+  it.
+- No such tool? Work from the design system and its real components.
+
 ## Design
 
 Decide these before code:

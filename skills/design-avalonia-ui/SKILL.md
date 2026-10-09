@@ -17,6 +17,19 @@ wins where they differ. For a web UI use `design-web-ui`.
 - Never invent behavior the claims lack; ask, or hand it to the specification
   author.
 
+## Design tool
+
+- When the session offers a design tool or design-system connector, use it:
+  read tokens and components from it and render boards in it.
+- Boards there use the project's tokens by name, never copied values, and
+  synthetic data only: nothing real leaves the project.
+- The design-system page wins where the tool differs; a mismatch is a question
+  for the person, not a pick. A new value lands on the page first, then in the
+  tool and the theme dictionaries.
+- Link each board in the hand-off; a tool board is checked against a
+  real-theme screenshot before it is approved.
+- No such tool? Work from the design-system page and the real themes.
+
 ## Tokens
 
 - Every color, size, spacing, radius, font, and duration is a named resource,
@@ -71,14 +84,15 @@ Design every state on every component, in both themes:
 ## Boards
 
 - Render each component and screen in Light and Dark, every state, at desktop
-  and touch density, from the real themes, not a mock-up.
+  and touch density, from the real themes or the design tool, never a
+  hand-drawn mock-up.
 - Review boards as screenshots; the builder's screenshots must match them.
 
 ## Hand-off checklist
 
 A design is ready for a builder when it has:
 
-1. Boards for every theme, state, and density.
+1. Boards for every theme, state, and density, each linked where it lives.
 2. Every token cited by name, and each new value added to the design-system
    page.
 3. The control theme and selectors per component.
