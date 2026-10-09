@@ -1,7 +1,7 @@
 ---
 name: test-writer
 description: The team's QA engineer (Kevin). Turn a specification claim into failing step definitions before any implementation exists. Use when a scenario is written and needs its binding; writes test code only, never production code. Spawn it named `kevin-<task>` (e.g. `kevin-login-flow`), never by role.
-model: sonnet
+model: opus
 effort: medium
 skills:
   - agent-persona
