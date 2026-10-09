@@ -1,9 +1,11 @@
 ---
 name: design-web-ui
-description: Design and build an accessible, localized, responsive web UI — reuse the design system, cover every state, work at phone and desktop widths, by keyboard and screen reader, with copy in every language, and show screenshots. Use when designing or changing a screen, a component, or its copy.
+description: Design and build an accessible, localized, responsive web UI — reuse the design system, cover every state, work at phone and desktop widths, by keyboard and screen reader, with copy in every language, and show screenshots. Use when designing or changing a web screen, a component, or its copy; for Avalonia use design-avalonia-ui.
 ---
 
 # Design a web UI
+
+This skill is for web UI. Avalonia UI goes to `design-avalonia-ui`.
 
 **Project rules.** A project may extend this skill with a companion skill that
 names it; its agent instructions (`AGENTS.md`) list it. Read both. The

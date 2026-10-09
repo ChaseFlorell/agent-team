@@ -19,6 +19,7 @@ local  agent  agents/auditor.md
 local  agent  agents/backend.md
 local  agent  agents/critic.md
 local  agent  agents/database-administrator.md
+local  agent  agents/designer.md
 local  agent  agents/infrastructure.md
 local  agent  agents/spec-author.md
 local  agent  agents/spec-reviewer.md
@@ -35,6 +36,7 @@ local  skill  agent-persona  skills/agent-persona/SKILL.md
 local  skill  clarify-requirements  skills/clarify-requirements/SKILL.md
 local  skill  coding-conventions  skills/coding-conventions/SKILL.md
 local  skill  deliver-change  skills/deliver-change/SKILL.md
+local  skill  design-avalonia-ui  skills/design-avalonia-ui/SKILL.md
 local  skill  design-cloud-infrastructure  skills/design-cloud-infrastructure/SKILL.md
 local  skill  design-ef-core-model  skills/design-ef-core-model/SKILL.md
 local  skill  design-web-ui  skills/design-web-ui/SKILL.md
