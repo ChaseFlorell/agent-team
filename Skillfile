@@ -21,7 +21,7 @@ local  agent  agents/critic.md
 local  agent  agents/database-administrator.md
 local  agent  agents/designer.md
 local  agent  agents/infrastructure.md
-local  agent  agents/native-client.md
+local  agent  agents/client.md
 local  agent  agents/spec-author.md
 local  agent  agents/spec-reviewer.md
 local  agent  agents/test-writer.md
@@ -34,6 +34,9 @@ github  skill  thebushidocollective/han  plugins/tools/cucumber/skills/cucumber-
 # Names are explicit: every source file is called SKILL.md, so without a name
 # they would all infer the same one and overwrite each other on install.
 local  skill  agent-persona  skills/agent-persona/SKILL.md
+local  skill  build-avalonia-ui  skills/build-avalonia-ui/SKILL.md
+local  skill  build-native-ui  skills/build-native-ui/SKILL.md
+local  skill  build-web-ui  skills/build-web-ui/SKILL.md
 local  skill  clarify-requirements  skills/clarify-requirements/SKILL.md
 local  skill  coding-conventions  skills/coding-conventions/SKILL.md
 local  skill  deliver-change  skills/deliver-change/SKILL.md
@@ -41,6 +44,7 @@ local  skill  design-avalonia-ui  skills/design-avalonia-ui/SKILL.md
 local  skill  design-cloud-infrastructure  skills/design-cloud-infrastructure/SKILL.md
 local  skill  design-ef-core-model  skills/design-ef-core-model/SKILL.md
 local  skill  design-native-ui  skills/design-native-ui/SKILL.md
+local  skill  design-ux-flow  skills/design-ux-flow/SKILL.md
 local  skill  design-web-ui  skills/design-web-ui/SKILL.md
 local  skill  manage-ef-core-migrations  skills/manage-ef-core-migrations/SKILL.md
 local  skill  postgres-dba  skills/postgres-dba/SKILL.md

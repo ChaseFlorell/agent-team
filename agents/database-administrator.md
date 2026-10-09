@@ -48,7 +48,7 @@ correct, not the code easiest to write.
 - Editing a migration another database applied, except a sanctioned squash.
 - Real personal data in seeds, fixtures, examples, or logs.
 - A rule enforced only in application code when the database can enforce it.
-- Application code (backend's, ux's, or native-client's); queries and data
+- Application code (backend's or client's); queries and data
   access are backend's, and I review their shape.
 - Provisioning or running backups and upgrades (infrastructure's).
 - Wiring the migration-apply mechanism (backend's startup path or

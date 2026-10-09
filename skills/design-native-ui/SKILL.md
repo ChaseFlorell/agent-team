@@ -11,7 +11,8 @@ companions are listed in its agent instructions (`AGENTS.md`). Read every one
 that applies. A stack companion holds the stack's resources, controls, and
 selectors; a project companion holds the project's design-system page,
 components, and tests. The more specific wins where they differ: the project's,
-then the stack's, then this one. For a web UI use `design-web-ui`.
+then the stack's, then this one. For a web UI use `design-web-ui`; the flow,
+accessibility semantics, and copy are `design-ux-flow`.
 
 ## Read first
 
@@ -101,7 +102,10 @@ theme.
 
 ## Accessibility
 
-Through the platform's accessibility APIs, never a parallel mechanism:
+The semantics (names, roles, reading and focus order, announcements) are
+ux's, from `design-ux-flow`; the designer draws focus, contrast, and large
+text, and the builder implements the semantics through the platform's
+accessibility APIs, never a parallel mechanism:
 
 - every control that shows no text has an accessible name, and help text
   where useful;
@@ -127,6 +131,11 @@ A design is ready for a builder when it has:
    page.
 3. The stack's styling per component: its theme or style and the selector or
    trigger for each state.
-4. The accessible names, roles, and focus order.
-5. Each open behaviour question answered or handed to the specification
+4. A link to ux's hand-off: the accessible names, roles, focus order, and
+   copy keys.
+5. The platform conventions followed for each target, and where the design
+   system overrides one.
+6. Each open behaviour question answered or handed to the specification
    author.
+7. The checklist above, ticked, for the builder to build against; the builder
+   makes no visual decision and sends a gap back.

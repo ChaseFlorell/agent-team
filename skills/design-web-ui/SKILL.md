@@ -1,6 +1,6 @@
 ---
 name: design-web-ui
-description: Design and build an accessible, localized, responsive web UI — reuse the design system, cover every state, work at phone and desktop widths, by keyboard and screen reader, with copy in every language, and show screenshots. Use when designing or changing a screen, a component, or its copy.
+description: Design an accessible, responsive web UI before it is built — reuse the design system, boards for every state at phone and desktop widths, and the checklist handed to the builder. Use when designing or changing the look of a web screen or component.
 ---
 
 # Design a web UI
@@ -10,19 +10,14 @@ names it; its agent instructions (`AGENTS.md`) list it. Read both. The
 companion holds the project's stack, design system, components, and tests, and
 wins where they differ.
 
-## Who does what
-
-Two roles share this skill; a step labelled with one belongs to it alone.
-
-- **designer**: "Design tool", the states and layouts in "Design", and the
-  "Hand-off checklist".
-- **ux**: the flow, keyboard and screen-reader behavior, and copy in
-  "Design", then "Build" and "Tests" from the designer's approved design.
-- Both: "Read first" and "Report".
+The designer's. The flow, accessibility semantics, and copy are ux's
+(`design-ux-flow`); building is the client's (`build-web-ui`). The hand-off
+leaves the builder no visual decision.
 
 ## Read first
 
 - The cited claims and the decisions they touch.
+- ux's hand-off: the flow, accessibility semantics, and copy keys.
 - The code graph or index, and the design system: reuse existing components
   and tokens before designing a new one.
 - The focused skills for the UI, the design system, and localization.
@@ -46,49 +41,26 @@ The designer's.
 
 Decide these before code:
 
-- **The flow** (ux): what the user does, in what order.
 - **The four states** (designer) of every screen and component that loads or
   submits: empty, loading, error, success.
 - **The layout at phone width and at desktop width** (designer).
-- **Keyboard and screen-reader behavior** (ux): reading order, focus order,
-  names, and announcements.
-- **The copy in every supported language** (ux).
-
-## Build
-
-ux's, from the designer's approved design.
-
-- The smallest design that satisfies the cited claims.
-- Accessible, localized, responsive markup that follows the design system.
-  - Semantic HTML, visible focus, 44px touch targets, reduced-motion support,
-    and AA contrast.
-  - Every user-facing string and accessible label lives in the locale
-    catalogues, never in the markup.
-  - Design tokens, not raw colors.
-- A new visual pattern comes from the designer, and only where the design
-  system has none.
-
-## Tests
-
-ux's.
-
-- Component tests for what you build, written as a user would act: by role and
-  label.
-- Acceptance step definitions and browser scenarios belong to the test writer;
-  make them pass.
 
 ## Hand-off checklist
 
-The designer's. A design is ready for ux to build when it has:
+A design is ready for the client to build when it has:
 
 1. A board for every state at phone and desktop width, each linked where it
    lives.
 2. Every token cited by name, and each new value added to the design system.
-3. Each open behavior question answered or handed to the specification author.
+3. Density, alignment, and the grid, with the layout at each width.
+4. The platform conventions that apply, and any new visual pattern, with its
+   reason.
+5. Each open behavior question answered or handed to the specification author.
+6. A link to ux's hand-off.
+7. The checklist ticked, for the builder to build against; the builder makes
+   no visual decision and sends a gap back.
 
 ## Report
 
 - The design choices made.
-- ux: the files changed, the test results, and a screenshot of each changed
-  screen, in the primary language.
-- designer: the linked boards and the completed hand-off checklist.
+- The linked boards and the completed hand-off checklist.
