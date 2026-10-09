@@ -1,6 +1,6 @@
 ---
 name: design-web-ui
-description: Design and build an accessible, localized, responsive web UI — reuse the design system, cover every state, work at phone and desktop widths, by keyboard and screen reader, with copy in every language, and show screenshots. Use when designing or changing a screen, a component, or its copy.
+description: Design and build an accessible, localized, responsive web UI — reuse the design system, cover every state, work at phone and desktop widths, by keyboard and screen reader, with copy from the locale catalogues, and show screenshots. Use when designing or building a screen or a component.
 ---
 
 # Design a web UI
@@ -14,15 +14,18 @@ wins where they differ.
 
 Two roles share this skill; a step labelled with one belongs to it alone.
 
-- **designer**: "Design tool", the states and layouts in "Design", and the
-  "Hand-off checklist".
-- **ux**: the flow, keyboard and screen-reader behavior, and copy in
-  "Design", then "Build" and "Tests" from the designer's approved design.
+- **designer**: "Design tool", "Design", and the "Hand-off checklist".
+- **client**: "Build" and "Tests", from the designer's approved design and
+  ux's hand-off.
 - Both: "Read first" and "Report".
+
+The flow, the accessibility semantics, and the copy are ux's, in
+`design-ux-flow`.
 
 ## Read first
 
 - The cited claims and the decisions they touch.
+- ux's hand-off: the flow, accessibility semantics, and copy keys.
 - The code graph or index, and the design system: reuse existing components
   and tokens before designing a new one.
 - The focused skills for the UI, the design system, and localization.
@@ -46,31 +49,29 @@ The designer's.
 
 Decide these before code:
 
-- **The flow** (ux): what the user does, in what order.
 - **The four states** (designer) of every screen and component that loads or
   submits: empty, loading, error, success.
 - **The layout at phone width and at desktop width** (designer).
-- **Keyboard and screen-reader behavior** (ux): reading order, focus order,
-  names, and announcements.
-- **The copy in every supported language** (ux).
 
 ## Build
 
-ux's, from the designer's approved design.
+client's, from the designer's approved design and ux's hand-off.
 
 - The smallest design that satisfies the cited claims.
-- Accessible, localized, responsive markup that follows the design system.
+- Accessible, localized, responsive markup that follows the design system and
+  ux's flow and semantics.
   - Semantic HTML, visible focus, 44px touch targets, reduced-motion support,
     and AA contrast.
-  - Every user-facing string and accessible label lives in the locale
-    catalogues, never in the markup.
+  - Every user-facing string and accessible label comes from the locale
+    catalogues (ux's entries), never from the markup. A missing key goes back
+    to ux.
   - Design tokens, not raw colors.
 - A new visual pattern comes from the designer, and only where the design
   system has none.
 
 ## Tests
 
-ux's.
+client's.
 
 - Component tests for what you build, written as a user would act: by role and
   label.
@@ -79,16 +80,17 @@ ux's.
 
 ## Hand-off checklist
 
-The designer's. A design is ready for ux to build when it has:
+The designer's. A design is ready for the client to build when it has:
 
 1. A board for every state at phone and desktop width, each linked where it
    lives.
 2. Every token cited by name, and each new value added to the design system.
 3. Each open behavior question answered or handed to the specification author.
+4. A link to ux's hand-off.
 
 ## Report
 
 - The design choices made.
-- ux: the files changed, the test results, and a screenshot of each changed
+- client: the files changed, the test results, and a screenshot of each changed
   screen, in the primary language.
 - designer: the linked boards and the completed hand-off checklist.

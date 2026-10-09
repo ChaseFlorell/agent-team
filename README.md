@@ -13,8 +13,8 @@ differ.
 | `spec-author` | Jennifer | business analyst — scenarios and what is out of scope |
 | `test-writer` | Kevin | QA engineer — a claim into a failing step definition |
 | `backend` | Brad | back-end engineer — server side, scripts, build, test, and check CI |
-| `ux` | Tiffany | front-end engineer — web UX flow and the web build |
-| `native-client` | Megan | native client engineer — desktop and mobile clients, built from approved boards |
+| `ux` | Tiffany | UX designer — interaction flow, accessibility semantics, and localized copy on every platform; builds nothing |
+| `client` | Megan | client engineer — web, desktop, and mobile clients, built from the UX hand-off and approved boards |
 | `designer` | Brittany | UI designer — visual layout, boards, states, and design-system values before build |
 | `infrastructure` | Dave | cloud and DevOps engineer |
 | `database-administrator` | Jane | PostgreSQL schema, EF Core mapping, migrations |
@@ -41,7 +41,8 @@ a design tool, so a `tools` list added to it must keep those.
 | `design-avalonia-ui` | Avalonia layer of `design-native-ui`: theme-aware tokens, control themes, pseudo-class states, density, boards, builder hand-off | designing or changing an Avalonia screen, component, or theme |
 | `design-ef-core-model` | a PostgreSQL schema as an EF Core model: relationships, types, indexes, queries | adding or changing an entity, DbContext, relationship, or query shape |
 | `design-native-ui` | stack-agnostic native design: platform conventions, input and density, every state in every theme, platform accessibility, window sizes and safe areas, boards, builder hand-off | designing or changing a native screen, component, or theme on any stack |
-| `design-web-ui` | accessible, localized, responsive web UI with screenshots | designing or changing a screen, a component, or its copy |
+| `design-ux-flow` | platform-neutral user experience: interaction flow, accessibility semantics, localized copy, and the hand-off | designing or changing how a screen, component, or feature flows, is announced, or reads |
+| `design-web-ui` | accessible, responsive web UI from the design system, with screenshots | designing or building a web screen or component |
 | `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
 | `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |

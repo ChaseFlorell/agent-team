@@ -63,8 +63,9 @@ the Light and Dark themes:
 
 ## Accessibility
 
-- Set `AutomationProperties.Name` (and `HelpText` where useful) on every
-  control that shows no text; hide decoration from the tree.
+- The builder sets `AutomationProperties.Name` (and `HelpText` where useful)
+  from ux's names on every control that shows no text, and hides decoration
+  from the tree.
 - The rest as `design-native-ui` "Accessibility": focus order and visibility,
   reduced motion, and the system's contrast settings.
 
@@ -83,5 +84,5 @@ checklist", in Avalonia's terms:
 2. Every token cited by name, and each new value added to the design-system
    page.
 3. The control theme and selectors per component.
-4. The automation names and focus order.
+4. A link to ux's hand-off: the automation names, focus order, and copy keys.
 5. Each open behavior question answered or handed to the specification author.
