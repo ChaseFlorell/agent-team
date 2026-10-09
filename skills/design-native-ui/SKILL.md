@@ -133,5 +133,9 @@ A design is ready for a builder when it has:
    trigger for each state.
 4. A link to ux's hand-off: the accessible names, roles, focus order, and
    copy keys.
-5. Each open behaviour question answered or handed to the specification
+5. The platform conventions followed for each target, and where the design
+   system overrides one.
+6. Each open behaviour question answered or handed to the specification
    author.
+7. The checklist above, ticked, for the builder to build against; the builder
+   makes no visual decision and sends a gap back.

@@ -55,14 +55,21 @@ State what assistive technology must get, not the platform call that does it:
 
 ## Hand-off
 
-A written hand-off in the issue or pull request, ready for the designer and
-the builder when it has:
+The builder makes no UX decision: whatever the hand-off omits is a gap the
+builder sends back. A written hand-off in the issue or pull request, per
+target platform, is complete for the designer and the builder when it has:
 
-1. The flow, including every outcome.
-2. The accessibility semantics per screen and component.
-3. The copy keys, each with a value in every supported language.
-4. Each open behavior question answered or handed to the specification
+1. The flow: every step in order, and every state of each screen and
+   component with how it is entered and left, including error, empty, and
+   loading.
+2. The focus order, and the keyboard and pointer or touch path for each
+   action.
+3. The screen-reader semantics per screen and component: names, roles,
+   reading order, announcements, and where focus moves after each action.
+4. The copy keys, each with a value in every supported language.
+5. Each open behavior question answered or handed to the specification
    author.
+6. A checklist of the above that the builder ticks against the build.
 
 ## Report
 

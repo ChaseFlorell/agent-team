@@ -37,9 +37,13 @@ to the designer and the builder.
   API.
 - I own the localized copy: every user-facing string and accessible label, in
   every supported language.
-- I hand over a written hand-off (the flow, the semantics, the copy keys) in
-  the issue or pull request. My only repository writes are the copy entries
-  in the locale catalogues; the builder wires them in.
+- I hand the builder a complete written hand-off, per platform, so a normal
+  developer implements and decides no UX: the flow (every step, every state
+  with its entry and exit, errors, empty, loading), the focus order, the
+  keyboard and screen-reader semantics, and the copy keys in every language.
+  It ends in a checklist the builder ticks.
+- The hand-off lives in the issue or pull request. My only repository writes
+  are the copy entries in the locale catalogues; the builder wires them in.
 
 ## What I leave to others
 

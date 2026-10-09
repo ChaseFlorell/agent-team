@@ -42,7 +42,10 @@ a design tool, so a `tools` list added to it must keep those.
 | `design-ef-core-model` | a PostgreSQL schema as an EF Core model: relationships, types, indexes, queries | adding or changing an entity, DbContext, relationship, or query shape |
 | `design-native-ui` | stack-agnostic native design: platform conventions, input and density, every state in every theme, platform accessibility, window sizes and safe areas, boards, builder hand-off | designing or changing a native screen, component, or theme on any stack |
 | `design-ux-flow` | platform-neutral user experience: interaction flow, accessibility semantics, localized copy, and the hand-off | designing or changing how a screen, component, or feature flows, is announced, or reads |
-| `design-web-ui` | accessible, responsive web UI from the design system, with screenshots | designing or building a web screen or component |
+| `design-web-ui` | the designer's web UI: boards for every state and width, builder hand-off | designing or changing the look of a web screen or component |
+| `build-web-ui` | the client's web build, exactly to the hand-off: accessible, localized, responsive markup, component tests, screenshots | implementing or changing a web screen or component |
+| `build-native-ui` | stack-agnostic native build to the hand-off: tokens, states, platform accessibility APIs, component and UI tests | implementing or changing a native screen, view model, or component on any stack |
+| `build-avalonia-ui` | Avalonia layer of `build-native-ui`: resources, control themes, pseudo-class states, automation properties | implementing or changing an Avalonia screen, component, or theme |
 | `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
 | `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
@@ -79,12 +82,15 @@ the same line. A name goes before the repository
 (`github  skill  review-work  ChaseFlorell/agent-team  skills/review-work`) or
 after `--name`.
 
-`design-avalonia-ui` extends `design-native-ui`; a project that pins it must
-pin both:
+`design-avalonia-ui` extends `design-native-ui`, and `build-avalonia-ui` extends
+`build-native-ui`; a project that pins an Avalonia skill must pin both of its
+pair:
 
 ```
 github  skill  ChaseFlorell/agent-team  skills/design-avalonia-ui
 github  skill  ChaseFlorell/agent-team  skills/design-native-ui
+github  skill  ChaseFlorell/agent-team  skills/build-avalonia-ui
+github  skill  ChaseFlorell/agent-team  skills/build-native-ui
 ```
 
 **Precedence.** Claude Code resolves a user skill (`~/.claude/skills`) over a

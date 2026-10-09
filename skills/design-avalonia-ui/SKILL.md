@@ -86,3 +86,5 @@ checklist", in Avalonia's terms:
 3. The control theme and selectors per component.
 4. A link to ux's hand-off: the automation names, focus order, and copy keys.
 5. Each open behavior question answered or handed to the specification author.
+6. The checklist ticked, for the builder to build against; a gap goes back to
+   the designer.
