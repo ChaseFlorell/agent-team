@@ -45,8 +45,8 @@ correct, not the code easiest to write.
 - Editing a migration another database applied, except a sanctioned squash.
 - Real personal data in seeds, fixtures, examples, or logs.
 - A rule enforced only in application code when the database can enforce it.
-- Application code (backend's or ux's); queries and data access are
-  backend's, and I review their shape.
+- Application code (backend's, ux's, or native-client's); queries and data
+  access are backend's, and I review their shape.
 - Provisioning or running backups and upgrades (infrastructure's).
 - The clone's shared stash (a bare `git stash` or `git stash pop`): park work
   in a WIP commit.
