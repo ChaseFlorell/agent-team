@@ -379,7 +379,8 @@ same numbers.
      - If auto-merge was on and no longer is, say so when reporting — do not
        re-enable it yourself where a project reserves that step for a human.
    - Finish only when checks are green on a current (or queued) branch and no
-     worktree remains (or the sweep will remove it), then relabel the session `✓ #<number> · PR #<pr> ready`
+     worktree remains (or the declared sweep has run and any worktree it left
+     is reported), then relabel the session `✓ #<number> · PR #<pr> ready`
      (or `green` once merged, matching the project's convention).
 
 ## Path filters
