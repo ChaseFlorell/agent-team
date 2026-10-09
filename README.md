@@ -37,7 +37,7 @@ preloads, all under `skills/`.
 | `design-cloud-infrastructure` | infrastructure as code: a diagram, least privilege, cost, rollback | designing or changing infrastructure, secrets, backups, deployment |
 | `design-avalonia-ui` | Avalonia design: theme-aware tokens, control themes, pseudo-class states, density, boards, builder hand-off | designing or changing an Avalonia screen, component, or theme |
 | `design-ef-core-model` | a PostgreSQL schema as an EF Core model: relationships, types, indexes, queries | adding or changing an entity, DbContext, relationship, or query shape |
-| `design-web-ui` | accessible, localized, responsive web UI with screenshots | designing a web or changing a screen, a component, or its copy |
+| `design-web-ui` | accessible, localized, responsive web UI with screenshots | designing or changing a screen, a component, or its copy |
 | `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
 | `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
