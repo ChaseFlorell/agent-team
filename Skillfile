@@ -17,11 +17,11 @@ local  agent  agents/adversary.md
 local  agent  agents/ai-author.md
 local  agent  agents/auditor.md
 local  agent  agents/backend.md
+local  agent  agents/client.md
 local  agent  agents/critic.md
 local  agent  agents/database-administrator.md
 local  agent  agents/designer.md
 local  agent  agents/infrastructure.md
-local  agent  agents/client.md
 local  agent  agents/spec-author.md
 local  agent  agents/spec-reviewer.md
 local  agent  agents/test-writer.md

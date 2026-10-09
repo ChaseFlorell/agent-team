@@ -22,6 +22,7 @@ decides, and a gap goes upstream.
   incomplete or ambiguous? Stop and send the question to ux or the designer;
   never guess.
 - The design system's real themes, resources, and components.
+- The focused skills for the UI, the design system, and localization.
 
 ## Build
 

@@ -41,18 +41,22 @@ The designer's.
 
 Decide these before code:
 
-- **The four states** (designer) of every screen and component that loads or
-  submits: empty, loading, error, success.
+- **Every state** (designer) of every component and screen: default,
+  hover or pointed at, pressed, focused, disabled, selected, empty, loading,
+  error, and success, in every theme.
 - **The layout at phone width and at desktop width** (designer).
+- **Visible focus, AA contrast, and touch targets** of at least 44px, in every
+  theme.
 
 ## Hand-off checklist
 
 A design is ready for the client to build when it has:
 
-1. A board for every state at phone and desktop width, each linked where it
-   lives.
+1. A board for every state, in every theme, at phone and desktop width, each
+   linked where it lives.
 2. Every token cited by name, and each new value added to the design system.
-3. Density, alignment, and the grid, with the layout at each width.
+3. Density, alignment, and the grid, with the layout at each width. Visible
+   focus, AA contrast, and 44px touch targets shown on the boards.
 4. The platform conventions that apply, and any new visual pattern, with its
    reason.
 5. Each open behavior question answered or handed to the specification author.

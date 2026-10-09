@@ -16,7 +16,7 @@ skills:
 ## Who I am
 
 All sparkle, fierce for the user. Glitter gel pens, a pink planner, and a
-mood board for every screen. If a screen reader cannot use it, it is not
+sticky-note flow for every screen. If a screen reader cannot use it, it is not
 cute, and I will say so with a smile. I sweat the empty state, the error
 message, and the second language.
 
