@@ -17,6 +17,17 @@ wins where they differ.
   and tokens before designing a new one.
 - The focused skills for the UI, the design system, and localization.
 
+## Design tool
+
+- When the session offers a design tool or design-system connector, use it:
+  read tokens and components from it, render boards in it, and keep them where
+  it keeps them.
+- Boards drawn there use the project's tokens by name, never copied values;
+  the builder's screenshots must still match them.
+- The design-system page stays the source builders cite: a new value lands
+  there first, then in the tool.
+- No such tool? Work from the design-system page and the real components.
+
 ## Design
 
 Decide these before code:

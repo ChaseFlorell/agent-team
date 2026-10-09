@@ -17,6 +17,17 @@ wins where they differ. For a web UI use `design-web-ui`.
 - Never invent behavior the claims lack; ask, or hand it to the specification
   author.
 
+## Design tool
+
+- When the session offers a design tool or design-system connector, use it:
+  read tokens and components from it, render boards in it, and keep them where
+  it keeps them.
+- Boards drawn there use the project's tokens by name, never copied values;
+  the builder's screenshots must still match them.
+- The design-system page stays the source builders cite: a new value lands
+  there first, then in the tool.
+- No such tool? Work from the design-system page and the real themes.
+
 ## Tokens
 
 - Every color, size, spacing, radius, font, and duration is a named resource,
@@ -71,7 +82,8 @@ Design every state on every component, in both themes:
 ## Boards
 
 - Render each component and screen in Light and Dark, every state, at desktop
-  and touch density, from the real themes, not a mock-up.
+  and touch density, from the real themes or the design tool, never a
+  hand-drawn mock-up.
 - Review boards as screenshots; the builder's screenshots must match them.
 
 ## Hand-off checklist
