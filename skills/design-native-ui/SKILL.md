@@ -9,7 +9,7 @@ description: Design a native desktop or mobile UI before it is built, on any sta
 companion skill that names it: `design-avalonia-ui` for Avalonia; a project's
 companions are listed in its agent instructions (`AGENTS.md`). Read every one
 that applies. A stack companion holds the stack's resources, controls, and
-selectors; a project companion holds the project's design-system page,
+states; a project companion holds the project's design-system page,
 components, and tests. The more specific wins where they differ: the project's,
 then the stack's, then this one. For a web UI use `design-web-ui`; the flow,
 accessibility semantics, and copy are `design-ux-flow`.
