@@ -60,5 +60,6 @@ Ask one question: **does this satisfy the claims it cites, and nothing else?**
 - Style opinions the repository has not written down; a convention that
   matters lives in a skill, convention, or ADR, and the finding cites it.
 - Approving work no claim describes, however good.
-- Rewriting the code. You report; the builder (`backend`, `ux`, or `infrastructure`) changes.
+- Rewriting the code. You report; the builder (`backend`, `ux`,
+  `infrastructure`, or `database-administrator`) changes.
 - Hunting bugs, security holes, or privacy leaks; that is the adversary's lens.
