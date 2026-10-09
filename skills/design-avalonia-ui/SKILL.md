@@ -8,9 +8,10 @@ description: Design an Avalonia UI before it is built — tokens as theme-aware 
 **Project rules.** This skill is the Avalonia layer of `design-native-ui`, the
 generic skill it extends and must be installed alongside: read both, and
 this one wins where they differ. A project may extend this skill with a
-companion skill that names it; its agent instructions (`AGENTS.md`) list it. Read it too. The companion holds the
-project's design-system page, components, and tests, and wins where they
-differ. For a web UI use `design-web-ui`.
+companion skill that names it; its agent instructions (`AGENTS.md`) list
+it. Read it too. The companion holds the project's design-system page,
+components, and tests, and wins where they differ. For a web UI use
+`design-web-ui`.
 
 ## Read first
 
