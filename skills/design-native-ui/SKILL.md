@@ -127,8 +127,8 @@ A design is ready for a builder when it has:
    it lives.
 2. Every token cited by name, and each new value added to the design-system
    page.
-3. The stack's styling per component: its theme or style and the selector or
-   trigger for each state.
+3. Per component, the token each state uses in each theme, and whether it is
+   templated or drawn.
 4. A link to ux's hand-off: the accessible names, roles, focus order, and
    copy keys.
 5. The platform conventions followed for each target, and where the design
