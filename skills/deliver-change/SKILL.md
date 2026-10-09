@@ -123,7 +123,8 @@ stronger one:
   issue means none switches a branch out from under another.
 - **The repository's worktree tool or convention wins.** When its agent
   instructions or companion skill declare one, use it for the worktree's path,
-  branch name, creation, recreation, and teardown, and read every
+  branch name, creation, recreation, and teardown (a declared sweep is a
+  teardown), and read every
   `issue-<number>/…` path and branch, and every `git worktree` command, below
   as that tool's. Fall back item by item: each of those the repository does not
   declare uses the commands in this skill, so declaring creation alone still
@@ -131,8 +132,11 @@ stronger one:
   `git fetch origin main && git worktree add -b issue-<number>/<short-description> .claude/worktrees/issue-<number>/<short-description> origin/main`.
 - **Which worktree a spawned agent works in.** When the repository declares a
   worktree tool, the agent works in the worktree that tool made: the lead
-  creates it and names its path in the brief. The harness's own worktree
-  isolation is the fallback, used only where none is declared.
+  creates it and names its path in the brief, and that path wins over an
+  agent's `isolation: worktree` frontmatter: the agent works in the named path
+  and leaves the harness's worktree untouched, so the harness discards it.
+  The harness's own worktree isolation is the fallback, used only where none
+  is declared.
 - **Keep the primary checkout's `main` current, and change nothing in it.**
   Fast-forward it to the remote: `git -C <primary checkout> pull --ff-only origin main`.
   Do this whenever the remote has moved, and after a pull request merges.
@@ -362,7 +366,7 @@ same numbers.
 9. **Watch required checks** from the primary checkout.
    - A check fails: if the worktree still exists, go back to it. Only if it is
      gone, recreate it on the same branch (no `-b`), by the repository's
-     declared recreate form, else:
+     declared recreation, else:
      `git fetch origin issue-<number>/<short-description> && git worktree add .claude/worktrees/issue-<number>/<short-description> issue-<number>/<short-description>`.
      Fix, commit, rebase, push each fix, and repeat steps 7 and 8.
    - Green, without a merge queue: fetch and confirm
@@ -379,8 +383,9 @@ same numbers.
      - If auto-merge was on and no longer is, say so when reporting — do not
        re-enable it yourself where a project reserves that step for a human.
    - Finish only when checks are green on a current (or queued) branch and no
-     worktree remains (or the declared sweep has run and any worktree it left
-     is reported), then relabel the session `✓ #<number> · PR #<pr> ready`
+     worktree remains, or, where a sweep is declared, the worktree is left to
+     it: the pull request is open and green or merged, and any worktree the
+     sweep has run and left is reported. Then relabel the session `✓ #<number> · PR #<pr> ready`
      (or `green` once merged, matching the project's convention).
 
 ## Path filters
