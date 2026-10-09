@@ -78,6 +78,14 @@ the same line. A name goes before the repository
 (`github  skill  review-work  ChaseFlorell/agent-team  skills/review-work`) or
 after `--name`.
 
+`design-avalonia-ui` extends `design-native-ui`; a project that pins it must
+pin both:
+
+```
+github  skill  ChaseFlorell/agent-team  skills/design-avalonia-ui
+github  skill  ChaseFlorell/agent-team  skills/design-native-ui
+```
+
 **Precedence.** Claude Code resolves a user skill (`~/.claude/skills`) over a
 project skill of the same name, but a project agent over a user agent. A user
 who also installs globally should keep that install at the project's pinned

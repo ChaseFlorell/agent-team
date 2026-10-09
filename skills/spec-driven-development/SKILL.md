@@ -424,7 +424,7 @@ dependency-free; the exit code is the contract. It fails:
 - a generated file that differs from what `generate` writes.
 
 Run it in the pre-commit hook and in a required CI job, with
-`$SDD generate --check`; backend wires both, never the specification author.
+`$SDD generate --check`; backend wires both.
 A rule that runs only in CI is found on the pull request, not before it. The project's own tools — step-definition binding,
 claim results per run, link checks across `docs/` — extend these; they
 never replace them.

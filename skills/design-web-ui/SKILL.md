@@ -15,7 +15,7 @@ wins where they differ.
 Two roles share this skill; a step labelled with one belongs to it alone.
 
 - **designer**: "Design tool", the states and layouts in "Design", and the
-  "Hand-off checklist". Writes no code or tests.
+  "Hand-off checklist".
 - **ux**: the flow, keyboard and screen-reader behavior, and copy in
   "Design", then "Build" and "Tests" from the designer's approved design.
 - Both: "Read first" and "Report".
