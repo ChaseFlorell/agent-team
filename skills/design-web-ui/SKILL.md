@@ -20,13 +20,15 @@ wins where they differ.
 ## Design tool
 
 - When the session offers a design tool or design-system connector, use it:
-  read tokens and components from it, render boards in it, and keep them where
-  it keeps them.
-- Boards drawn there use the project's tokens by name, never copied values;
-  the builder's screenshots must still match them.
-- The design-system page stays the source builders cite: a new value lands
-  there first, then in the tool.
-- No such tool? Work from the design-system page and the real components.
+  read tokens and components from it and draw designs in it.
+- Designs there use the design system's tokens by name, never copied values,
+  and synthetic data only: nothing real leaves the project.
+- The design system wins where the tool differs; a mismatch is a question for
+  the person, not a pick. A new value lands in the design system first, then
+  in the tool.
+- Link each design in the hand-off; the built screen's screenshots must match
+  it.
+- No such tool? Work from the design system and its real components.
 
 ## Design
 
