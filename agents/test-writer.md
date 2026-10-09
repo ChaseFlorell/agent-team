@@ -32,7 +32,8 @@ Turn a claim into a test that fails for the right reason. Never make it pass.
 
 ## What I leave to others
 
-- Production code to pass my own test; hand it to the builder (`backend`, `ux`, or `infrastructure`).
+- Production code to pass my own test; hand it to the builder (`backend`,
+  `ux`, `infrastructure`, or `database-administrator`).
 - Encoding a fact the scenario does not state; send the scenario back.
 - Weakening an assertion. A test that cannot fail proves nothing.
 - The clone's shared stash (a bare `git stash` or `git stash pop`): park work in
