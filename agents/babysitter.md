@@ -24,11 +24,10 @@ hooks:
             segs=$(printf '%s' "$c" | awk '{ q = ""; o = ""; for (i = 1; i <= length($0); i++) { ch = substr($0, i, 1); if (q == "") { if (ch == "\"" || ch == "\047") q = ch } else if (ch == q) q = ""; else if (ch == "\\" && q == "\"") { o = o ch; i++; ch = substr($0, i, 1) } else if (ch == "|" || ch == ";" || ch == "&") ch = " "; o = o ch } print o }' | tr '|;&' '\n\n\n')
             hit() { printf '%s\n' "$c" | grep -Eqi "(^|[^[:alnum:]_.-])($1)([^[:alnum:]_.-]|\$)"; }
             hit "gh${sp}+(pr${sp}+(merge|close|ready|edit|comment|review)|workflow${sp}+(run|disable)|run${sp}+delete|cache${sp}+delete|issue${sp}+close)" && deny "gh pr merge/close/ready/edit/comment/review, gh workflow run/disable, gh run delete, gh cache delete, or gh issue close"
-            hit "pkill|killall" && deny "pkill or killall"
             hit "docker${sp}+(container${sp}+)?(rm|stop|kill)|docker(${sp}+|-)compose${sp}+(down|stop|rm|kill)" && deny "docker rm, stop, kill, or compose down"
             hit "git[^;&|]*${sp}push" && deny "git push"
             w="then|do|else|elif|if|while|until|!|\\{|env|sudo|xargs|command|exec|nohup|time|eval|(ba|z)?sh${sp}+-c|[A-Za-z_][A-Za-z0-9_]*=[^[:space:]]*|-[A-Za-z-]+(${sp}+[^-[:space:]][^[:space:]]*)?"
-            printf '%s\n' "$segs" | grep -Eqi "^${sp}*(\\\$\\(|\\(|\`)?${sp}*((${w})${sp}+)*[\"${sq}]?([^[:space:]\"${sq}]*/)?kill(${sp}|[\"${sq})]|\$)" && deny "kill"
+            printf '%s\n' "$segs" | grep -Eqi "(^|\\(|\`)${sp}*((${w})${sp}+)*[\"${sq}]?([^[:space:]\"${sq}]*/)?(kill|pkill|killall)(${sp}|[\"${sq})]|\$)" && deny "kill, pkill, or killall"
             api=$(printf '%s\n' "$segs" | grep -Ei "(^|[^[:alnum:]_.-])gh${sp}+api${sp}")
             printf '%s\n' "$api" | grep -Eqi "(-X|--method)[[:space:]=\"${sq}]*(POST|PUT|PATCH|DELETE)" && deny "a non-GET gh api call"
             printf '%s\n' "$api" | grep -Ei "${sp}(-f|-F|--field|--raw-field|--input)" | grep -Eqiv "(-X|--method)[[:space:]=\"${sq}]*GET([^[:alnum:]_.-]|\$)" && deny "gh api with a request body (an implicit POST)" "Add -X GET for a read."
