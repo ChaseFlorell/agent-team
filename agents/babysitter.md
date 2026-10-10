@@ -8,18 +8,21 @@ disallowedTools:
   - Edit
   - Write
   - NotebookEdit
-  - Bash(gh pr merge:*)
-  - Bash(gh pr close:*)
-  - Bash(gh pr ready:*)
-  - Bash(gh workflow run:*)
-  - Bash(gh api -X:*)
-  - Bash(gh api --method:*)
-  - Bash(git push:*)
-  - Bash(kill:*)
-  - Bash(pkill:*)
-  - Bash(docker rm:*)
-  - Bash(docker stop:*)
-  - Bash(docker kill:*)
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: |
+            in=$(cat)
+            c=$(printf '%s' "$in" | jq -r '.tool_input.command // empty' 2>/dev/null) || c=$in
+            b='(^|[^[:alnum:]_.-])'
+            e='([^[:alnum:]_.-]|$)'
+            deny() { echo "Blocked: Kristy never runs '$1'. Report it to the lead instead." >&2; exit 2; }
+            printf '%s\n' "$c" | grep -Eq "${b}(gh[[:space:]]+(pr[[:space:]]+(merge|close|ready)|workflow[[:space:]]+run)|kill|pkill|killall|docker[[:space:]]+(rm|stop|kill))${e}" && deny "merge, close, ready, workflow run, kill, or docker rm/stop/kill"
+            printf '%s\n' "$c" | grep -Eq "${b}git[^;&|]*[[:space:]]push${e}" && deny "git push"
+            printf '%s\n' "$c" | grep -Eq "${b}gh[[:space:]]+api[[:space:]].*(-X|--method)[[:space:]=\"']*(POST|PUT|PATCH|DELETE)" && deny "a non-GET gh api call"
+            exit 0
 skills:
   - agent-persona
   - watch-builds
