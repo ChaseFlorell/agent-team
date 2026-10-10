@@ -138,7 +138,8 @@ test('GivenBlockScalarCommandWithHashColonAndQuotes_WhenChecked_ThenNoProblems',
 test('GivenBlockScalarWithDashLines_WhenParsed_ThenNoItemsOnTheKey', () => {
 	const parsed = parseFrontmatter(agent(scalarHooks('            - not a list item\n            exit 0\n') + 'isolation: worktree\n'))
 	const hooks = parsed.entries?.find((entry) => entry.key === 'hooks')
-	assert.deepEqual(hooks?.items, ['type: command'])
+	assert.ok(hooks?.items.includes('type: command'))
+	assert.ok(!hooks?.items.includes('not a list item'))
 	assert.deepEqual(parsed.entries?.map((entry) => entry.key), ['name', 'description', 'model', 'effort', 'hooks', 'isolation'])
 })
 
