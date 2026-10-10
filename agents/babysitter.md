@@ -22,6 +22,9 @@ hooks:
             printf '%s\n' "$c" | grep -Eq "${b}(gh[[:space:]]+(pr[[:space:]]+(merge|close|ready)|workflow[[:space:]]+run)|kill|pkill|killall|docker[[:space:]]+(rm|stop|kill))${e}" && deny "merge, close, ready, workflow run, kill, or docker rm/stop/kill"
             printf '%s\n' "$c" | grep -Eq "${b}git[^;&|]*[[:space:]]push${e}" && deny "git push"
             printf '%s\n' "$c" | grep -Eq "${b}gh[[:space:]]+api[[:space:]].*(-X|--method)[[:space:]=\"']*(POST|PUT|PATCH|DELETE)" && deny "a non-GET gh api call"
+            if printf '%s\n' "$c" | grep -Eq "${b}gh[[:space:]]+api[[:space:]].*[[:space:]](-f|-F|--field|--raw-field|--input)"; then
+              printf '%s\n' "$c" | grep -Eq "(-X|--method)[[:space:]=\"']*GET${e}" || deny "gh api with a request body (an implicit POST)"
+            fi
             exit 0
 skills:
   - agent-persona
