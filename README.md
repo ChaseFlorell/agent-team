@@ -22,6 +22,7 @@ differ.
 | `critic` | Karen | design reviewer — a plan before it is built |
 | `adversary` | Kyle | security engineer — attacks a change before it merges |
 | `auditor` | Ashley | compliance auditor — the whole repository at rest |
+| `babysitter` | Kristy | build babysitter — watches pull requests and builds, classifies each failure, routes it |
 | `ai-author` | Emily | maintains agent instructions |
 
 Each agent's frontmatter declares its model, effort, tools, and the skills it
@@ -51,6 +52,7 @@ a design tool, so a `tools` list added to it must keep those.
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
 | `spec-driven-development` | the artifact chain, the specification directory, feature areas, constraint pages, ADRs, conventions, lessons, the glossary, the generated index, and the generator that creates and checks them all | starting a project on the method, or writing a scenario, ADR, convention, or lesson |
 | `test-from-scenarios` | scenario tags, step definitions from the scenario, seeded data, pinned containers | test changes or behaviour that needs verification |
+| `watch-builds` | watching pull requests and builds: states, logs, classifying a failure, baselines, contention, routing, re-run and cancel limits | watching a pull request's checks, triaging a red or hung run, or finding why a suite is slow |
 | `write-agent-instructions` | the agent-file shape, style rules, and the editing procedure that loses no rule | adding or changing instructions, a skill, or a role agent, or auditing their shape and style |
 
 `cucumber-best-practices`, the Gherkin style guide `spec-author` preloads,

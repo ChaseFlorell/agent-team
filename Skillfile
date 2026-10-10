@@ -16,6 +16,7 @@ install  claude-code  global
 local  agent  agents/adversary.md
 local  agent  agents/ai-author.md
 local  agent  agents/auditor.md
+local  agent  agents/babysitter.md
 local  agent  agents/backend.md
 local  agent  agents/client.md
 local  agent  agents/critic.md
@@ -52,4 +53,5 @@ local  skill  review-work  skills/review-work/SKILL.md
 # A directory, not a file: this skill ships templates and a generator beside its SKILL.md.
 local  skill  spec-driven-development  skills/spec-driven-development
 local  skill  test-from-scenarios  skills/test-from-scenarios/SKILL.md
+local  skill  watch-builds  skills/watch-builds/SKILL.md
 local  skill  write-agent-instructions  skills/write-agent-instructions/SKILL.md

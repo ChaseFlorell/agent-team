@@ -363,7 +363,9 @@ same numbers.
    - Once the pull request is done and the declared sweep has run but left the
      worktree (a closed pull request, a dirty tree, a kept branch), report the
      worktree and the reason to the person. Don't force its removal.
-9. **Watch required checks** from the primary checkout.
+9. **Watch required checks** from the primary checkout. Once the lead hands
+   the pull request to the babysitter, she watches and classifies failures
+   (`watch-builds`); the author fixes, and keeps "Removed from the queue?".
    - A check fails: if the worktree still exists, go back to it. Only if it is
      gone, recreate it on the same branch (no `-b`), by the repository's
      declared recreation, else:
