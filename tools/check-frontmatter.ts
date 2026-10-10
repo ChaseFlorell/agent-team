@@ -27,9 +27,17 @@ export type Frontmatter = { entries: FrontmatterEntry[]; error?: undefined } | {
 export const SKILL_KEYS = ['name', 'description'] as const
 export const AGENT_KEYS = ['name', 'description', 'model', 'effort'] as const
 // Claude Code's other agent keys; anything beyond these is refused.
-export const OPTIONAL_AGENT_KEYS = ['tools', 'disallowedTools', 'permissionMode', 'maxTurns', 'skills', 'memory', 'isolation', 'background'] as const
+export const OPTIONAL_AGENT_KEYS = ['tools', 'disallowedTools', 'permissionMode', 'maxTurns', 'skills', 'memory', 'isolation', 'background', 'hooks'] as const
 export const MODEL = /^(sonnet|opus|haiku|inherit|claude-[a-z0-9.-]+)$/
 export const EFFORT = /^(low|medium|high|max|[1-9]\d*)$/
+
+/** A line that opens a block scalar: `key: |`, `- key: >-`, `key: |2+`. */
+const BLOCK_SCALAR = /:\s+[|>](?:[1-9][+-]?|[+-][1-9]?)?\s*$/
+
+/** Column of a line's key, past indentation and any `- ` list markers. */
+function keyIndent(line: string): number {
+	return /^(?:\s*-\s+)*\s*/.exec(line)![0].length
+}
 
 /** Reads the leading `---` block as top-level keys, with block-list items kept per key. */
 export function parseFrontmatter(text: string): Frontmatter {
@@ -40,8 +48,22 @@ export function parseFrontmatter(text: string): Frontmatter {
 	if (end === -1) return { error: 'the frontmatter block opens with --- but never closes' }
 
 	const entries: FrontmatterEntry[] = []
+	// While inside a `|` or `>` block scalar: the indent its lines must exceed.
+	let scalarParentIndent: number | undefined
 	for (let index = 1; index < end; index += 1) {
 		const line = lines[index]
+
+		// A block scalar's content is opaque text: no comments, list items, or keys, and tabs are legal after the indentation.
+		if (scalarParentIndent !== undefined) {
+			if (line.trim() === '') continue
+			const indent = /^ */.exec(line)![0].length
+			if (indent > scalarParentIndent) {
+				if (line[indent] === '\t') return { error: `line ${index + 1} contains a tab in its indentation; YAML forbids tabs in indentation` }
+				continue
+			}
+			scalarParentIndent = undefined
+		}
+
 		if (line.trim() === '' || line.trimStart().startsWith('#')) continue
 		if (line.includes('\t')) return { error: `line ${index + 1} contains a tab; YAML forbids tabs in indentation` }
 
@@ -54,6 +76,7 @@ export function parseFrontmatter(text: string): Frontmatter {
 				previous.items.push(item[1].trim())
 				previous.value = `${previous.value} ${line.trim()}`.trim()
 			} else previous.nested = true
+			if (BLOCK_SCALAR.test(line)) scalarParentIndent = keyIndent(line)
 			continue
 		}
 
@@ -61,6 +84,7 @@ export function parseFrontmatter(text: string): Frontmatter {
 		if (separator === -1) return { error: `line ${index + 1} is not a "key: value" pair: ${line}` }
 
 		entries.push({ key: line.slice(0, separator).trim(), value: line.slice(separator + 1).trim(), nested: false, items: [] })
+		if (BLOCK_SCALAR.test(line)) scalarParentIndent = 0
 	}
 
 	return { entries }

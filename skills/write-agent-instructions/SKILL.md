@@ -55,6 +55,11 @@ The one home for how an instruction file is written; others link here.
     review, audit, design what outlives the code) takes the stronger model and
     more effort than a build role (bind a written scenario, rewrite wording,
     build within settled claims); a bounded loop may take less effort.
+  - `disallowedTools` takes whole tool names. An entry with a specifier, such
+    as `Bash(git push *)`, removes the whole tool; block specific commands
+    with a `PreToolUse` hook in the agent's `hooks`.
+  - An agent whose guard is a frontmatter `hooks` entry must be spawned as a
+    plain subagent, never as an agent-team teammate; teammates get no hooks.
   - The install step copies each agent verbatim. An orchestrator spawns a
     role by its `name` and gets these settings, unless it overrides `model` for
     one call.

@@ -30,6 +30,9 @@ preloads, all under `skills/`. An agent with no `tools` key inherits every tool
 the session offers, connectors included; the designer relies on that to reach
 a design tool, so a `tools` list added to it must keep those.
 
+The `babysitter` guards its commands with a frontmatter hook, so spawn it as a
+plain subagent, never as an agent-team teammate; teammates get no hooks.
+
 ## Team skills
 
 | Skill | Holds | Use when |

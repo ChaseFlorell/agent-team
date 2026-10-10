@@ -45,6 +45,8 @@ Poll; never use `gh pr checks --watch`, which blocks past the Bash timeout.
 - Annotations name the file and line: take `<job-id>` from `.jobs[].databaseId`
   of `gh run view <id> --json jobs`, then
   `gh api repos/{owner}/{repo}/check-runs/<job-id>/annotations`.
+  `gh api` with `-f` or `-F` is a POST unless `-X GET` is set; add `-X GET`
+  for a read with fields.
 - Report the first real error, not the last line.
 - Read the test runner's summary line (passed, failed, skipped counts).
 

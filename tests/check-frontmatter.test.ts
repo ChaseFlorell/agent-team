@@ -103,3 +103,55 @@ test('GivenQuotedColonInValue_WhenChecked_ThenAccepted', () => {
 test('GivenUnquotedHashInValue_WhenChecked_ThenReportsComment', () => {
 	assert.match(checkFile('skills/a/SKILL.md', '---\nname: a\ndescription: Use for C #9 work\n---\n').join('\n'), /unquoted " #"/)
 })
+
+const hooksBlock = 'hooks:\n  PreToolUse:\n    - matcher: "Bash"\n      hooks:\n        - type: command\n          command: "echo: hi # there"\n'
+
+test('GivenAgentWithNestedHooksBlock_WhenChecked_ThenNoProblems', () => {
+	assert.deepEqual(checkFile('agents/x.md', agent(hooksBlock + 'isolation: worktree\n')), [])
+})
+
+test('GivenNestedHooksBlock_WhenParsed_ThenNestedKeysAreNotTopLevel', () => {
+	const parsed = parseFrontmatter(agent(hooksBlock + 'isolation: worktree\n'))
+	assert.deepEqual(parsed.entries?.map((entry) => entry.key), ['name', 'description', 'model', 'effort', 'hooks', 'isolation'])
+})
+
+test('GivenHooksBlockAndUnknownKey_WhenChecked_ThenStillRefusesTheKey', () => {
+	const problems = checkFile('agents/x.md', agent(hooksBlock + 'type: agent\n')).join('\n')
+	assert.match(problems, /"type" is not a key an? agent carries/)
+	assert.doesNotMatch(problems, /"hooks" is not a key/)
+})
+
+const scalarHooks = (body: string) => `hooks:\n  PreToolUse:\n    - matcher: "Bash"\n      hooks:\n        - type: command\n          command: |\n${body}`
+
+test('GivenBlockScalarCommandWithHashColonAndQuotes_WhenChecked_ThenNoProblems', () => {
+	const body = [
+		`            c=$(printf '%s' "$in" | jq -r '.tool_input.command // empty')`,
+		'            # a comment: with a colon',
+		`            echo "Blocked: Kristy never runs '$1'." >&2; exit 2`,
+		'            - not a list item',
+		'',
+		'            exit 0',
+	].join('\n')
+	assert.deepEqual(checkFile('agents/x.md', agent(scalarHooks(body + '\n') + 'isolation: worktree\n')), [])
+})
+
+test('GivenBlockScalarWithDashLines_WhenParsed_ThenNoItemsOnTheKey', () => {
+	const parsed = parseFrontmatter(agent(scalarHooks('            - not a list item\n            exit 0\n') + 'isolation: worktree\n'))
+	const hooks = parsed.entries?.find((entry) => entry.key === 'hooks')
+	assert.ok(hooks?.items.includes('type: command'))
+	assert.ok(!hooks?.items.includes('not a list item'))
+	assert.deepEqual(parsed.entries?.map((entry) => entry.key), ['name', 'description', 'model', 'effort', 'hooks', 'isolation'])
+})
+
+test('GivenTabInsideBlockScalarContent_WhenParsed_ThenAllowed', () => {
+	assert.equal(parseFrontmatter(agent(scalarHooks('            printf "a\tb"\n\t\n            exit 0\n'))).error, undefined)
+})
+
+test('GivenTabInBlockScalarIndentation_WhenParsed_ThenRefused', () => {
+	assert.match(parseFrontmatter(agent(scalarHooks('            exit 0\n          \texit 1\n'))).error ?? '', /tab/)
+})
+
+test('GivenKeyAfterBlockScalar_WhenParsed_ThenReadAsKey', () => {
+	const parsed = parseFrontmatter('---\nname: |\n  # not a comment\n  tab\there\ndescription: d\n---\n')
+	assert.deepEqual(parsed.entries?.map((entry) => entry.key), ['name', 'description'])
+})
