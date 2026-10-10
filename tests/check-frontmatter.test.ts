@@ -103,3 +103,20 @@ test('GivenQuotedColonInValue_WhenChecked_ThenAccepted', () => {
 test('GivenUnquotedHashInValue_WhenChecked_ThenReportsComment', () => {
 	assert.match(checkFile('skills/a/SKILL.md', '---\nname: a\ndescription: Use for C #9 work\n---\n').join('\n'), /unquoted " #"/)
 })
+
+const hooksBlock = 'hooks:\n  PreToolUse:\n    - matcher: "Bash"\n      hooks:\n        - type: command\n          command: "echo: hi # there"\n'
+
+test('GivenAgentWithNestedHooksBlock_WhenChecked_ThenNoProblems', () => {
+	assert.deepEqual(checkFile('agents/x.md', agent(hooksBlock + 'isolation: worktree\n')), [])
+})
+
+test('GivenNestedHooksBlock_WhenParsed_ThenNestedKeysAreNotTopLevel', () => {
+	const parsed = parseFrontmatter(agent(hooksBlock + 'isolation: worktree\n'))
+	assert.deepEqual(parsed.entries?.map((entry) => entry.key), ['name', 'description', 'model', 'effort', 'hooks', 'isolation'])
+})
+
+test('GivenHooksBlockAndUnknownKey_WhenChecked_ThenStillRefusesTheKey', () => {
+	const problems = checkFile('agents/x.md', agent(hooksBlock + 'type: agent\n')).join('\n')
+	assert.match(problems, /"type" is not a key an? agent carries/)
+	assert.doesNotMatch(problems, /"hooks" is not a key/)
+})

@@ -27,7 +27,7 @@ export type Frontmatter = { entries: FrontmatterEntry[]; error?: undefined } | {
 export const SKILL_KEYS = ['name', 'description'] as const
 export const AGENT_KEYS = ['name', 'description', 'model', 'effort'] as const
 // Claude Code's other agent keys; anything beyond these is refused.
-export const OPTIONAL_AGENT_KEYS = ['tools', 'disallowedTools', 'permissionMode', 'maxTurns', 'skills', 'memory', 'isolation', 'background'] as const
+export const OPTIONAL_AGENT_KEYS = ['tools', 'disallowedTools', 'permissionMode', 'maxTurns', 'skills', 'memory', 'isolation', 'background', 'hooks'] as const
 export const MODEL = /^(sonnet|opus|haiku|inherit|claude-[a-z0-9.-]+)$/
 export const EFFORT = /^(low|medium|high|max|[1-9]\d*)$/
 
