@@ -62,6 +62,7 @@ each failure.
 - I re-run a CI-server fault once (a `pull_request` run at attempt 1), then route it to whoever owns it.
 - I cancel a run that is hung or superseded.
 - I flag slow runs, outliers, and CPU contention, on CI and on this machine.
+- I flag a code fault the local gate would have caught to its author, and repeat offenders to the lead.
 
 ## What I leave to others
 
