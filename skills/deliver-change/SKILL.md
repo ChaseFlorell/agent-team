@@ -178,14 +178,15 @@ stronger one:
 
 ### Commit, rebase, claim identifiers
 
-- **Commit and push each unit of work as soon as it is done** — a scenario, a
-  passing test, a step definition, a document. Never hold work for the pull
-  request; local-only work is invisible to others and lost with the worktree.
+- **Commit each unit of work as soon as it is done** — a scenario, a
+  passing test, a step definition, a document — and push it while no pull
+  request is open; local-only work is invisible to others and lost with the
+  worktree. Once a pull request is open, batch pushes (step 1).
 - **Rebase onto fresh `origin/main` before every commit**, not only before a
   push — each unit, the final commit, and each fix while watching checks:
   `git fetch origin main && git rebase origin/main`.
   - Resolve conflicts locally. If the rebase brought in commits, re-run the
-    affected checks before pushing.
+    gate before pushing (step 1).
   - Rewrote commits already on `origin`? `git push --force-with-lease`, never
     plain `--force`.
 - **Claim a shared identifier after that rebase**, never from the tree as you
@@ -287,15 +288,33 @@ issue, not this conversation.
 The step numbers are stable; the project skill adds its commands under the
 same numbers.
 
-1. **Test, then pass the local CI gate.** First run, natively, the tests for
-   the code you changed: the focused subset, not the whole suite. Then run the
-   project's local CI runner with the draft pull request body. No pull request
-   is opened until both pass.
+1. **Test, then pass the local CI gate before every push to a pull request
+   branch**, not only the first: fix-ups, rebases, and conflict resolutions
+   too. Every red CI run holds a scarce runner and queues the next push.
+   - **Order**: rebase onto fresh `origin/main` so the gate tests what CI
+     will; run, natively, the tests for the code you changed; then run the
+     project's local CI runner with the pull request's current body (the
+     draft body before it is open). No green gate, no push.
+   - **Shared code needs the wide run.** Code is shared when more than one
+     test project or feature area imports it, or it is a test harness, test
+     helper, base class, fixture, or build or lint config. A change to shared
+     code runs the full affected suite, or the runner's full flag. The
+     focused subset is enough only for a leaf change.
+   - **Enforce it, don't remember it.** The repository runs the gate in a
+     `pre-push` hook and guards the agent side: a tool hook denies
+     `--no-verify` and denies opening or readying a pull request without a
+     pass stamp. "Shared" is a checked-in path list the hook reads, which
+     escalates to the full run; the project skill names the hook, the list,
+     and the stamp. Without them, follow this step by hand.
+   - **Batch pushes.** Every push costs a full CI run: push finished work,
+     never work in progress, to an open pull request. A draft follows the
+     same rule; it is not a scratchpad for CI.
+   - **A CI failure the gate would have caught is a process miss.** Fix it,
+     then say in the pull request which local step was skipped.
    - The runner's default is the fast checks: the body checks and the cheap
      jobs. The slow jobs (the full test suite, coverage, the browser suite)
      run on GitHub, and the pull request's required checks, the coverage
-     ratchet included, are the full gate. The runner has a flag for the full
-     run; use it only when the full result is worth the wait.
+     ratchet included, are the full gate.
    - It runs the pull request's own workflow files, not a copy of their
      commands: a re-implemented check drifts from the one CI runs.
    - A green test run is not a passing gate; the coverage ratchet and the
@@ -307,7 +326,7 @@ same numbers.
 2. **Inspect** `git diff --check`, links, generated artifacts, and
    `git status`.
 3. **Commit the last unit** — concise imperative message, no co-author
-   trailer — rebase onto fresh `origin/main`, and push. Never open a pull
+   trailer — pass the gate (step 1), and push. Never open a pull
    request from a branch behind `origin/main`.
 4. **Open the pull request** with a squash-ready title, then relabel the
    session `#<number> · PR #<pr> <short-description>`. Once the worktree is
@@ -370,7 +389,8 @@ same numbers.
      gone, recreate it on the same branch (no `-b`), by the repository's
      declared recreation, else:
      `git fetch origin issue-<number>/<short-description> && git worktree add .claude/worktrees/issue-<number>/<short-description> issue-<number>/<short-description>`.
-     Fix, commit, rebase, push each fix, and repeat steps 7 and 8.
+     Fix everything the run reported, pass the gate (step 1), push once, and
+     repeat steps 7 and 8.
    - Green, without a merge queue: fetch and confirm
      `gh pr view <pr> --json mergeStateStatus` is not `BEHIND` — `main` moves
      while checks run. Behind? Rebase, push, watch again.

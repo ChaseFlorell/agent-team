@@ -96,6 +96,7 @@ say *what*; you decide *how*, and prove it.
 
 ## Before finishing
 
-- Run the narrowest relevant checks.
+- Run the narrowest relevant checks; for shared code, the wide run
+  (`deliver-change` "Verify and publish" step 1).
 - Inspect the diff for unrelated changes.
 - Update the specification whenever the target design changes.

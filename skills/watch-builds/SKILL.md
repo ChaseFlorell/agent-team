@@ -115,6 +115,10 @@ personal data, or user content from a log.
   auto-merge turned off: tell the author the reason from the timeline.
 - `mergeStateStatus` of `BEHIND` or `DIRTY`: tell the author.
 - For the last two, the author follows `deliver-change` step 9.
+- A code fault the local gate would have caught (compile, lint, or body
+  check; a test a full run covers) is a process miss
+  (`deliver-change` step 1): tell the author to say which step was skipped.
+  A second miss by the same author, on any pull request, goes to the lead.
 - Report every re-run and cancel to the author with its reason.
 
 ## Re-run and cancel
@@ -134,3 +138,8 @@ touch nothing and route to the lead.
 4. Cancel only a hung run (see "Durations and outliers") or a superseded run:
    `gh run cancel <id>`. Superseded means the run's `headSha` differs from
    `gh pr view <pr> --json headRefOid`.
+
+## Recommend
+
+Not a rule: CI that skips heavy jobs on draft pull requests spares the runners.
+Suggest it to backend where the workflows have a draft condition to hang it on.
