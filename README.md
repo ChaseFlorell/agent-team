@@ -71,7 +71,13 @@ cd agent-team
 skillfile install   # copies agents to ~/.claude/agents, skills to ~/.claude/skills
 ```
 
-Re-run `skillfile install` after a `git pull`. A project's `.claude/agents`
+After a `git pull`, run `node tools/refresh-install.ts`. Plain `skillfile install`
+never redeploys a local entry already in `~/.claude`
+([eljulians/skillfile#134](https://github.com/eljulians/skillfile/issues/134));
+the tool moves the deployed copies of this `Skillfile`'s local entries into
+`~/.claude/.refresh-install-backup/<timestamp>/` (nothing is deleted, and a
+failed install puts them back), then installs. `--dry-run` lists what it would
+move. A project's `.claude/agents`
 shadows a user-level agent of the same name.
 
 For every contributor of one project, pin the files from its own `Skillfile`
