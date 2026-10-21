@@ -36,7 +36,9 @@ The designer's.
 - **Value authority**: the design system, or, when the repo says so, the
   tokens exported from the tool (W3C DTCG). Where the tool differs from it,
   a mismatch is a question for the person, not a pick. A new value lands in
-  the authority first, then in the tool.
+  the authority first, then in the tool. Where the repo declares the design
+  tool leads and exports tokens from it, a new value starts in the tool and an
+  export is never hand-edited.
 - Link each design in the hand-off; the built screen's screenshots must match
   it.
 - No such tool? Work from the design system and its real components.

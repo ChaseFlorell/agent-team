@@ -23,7 +23,8 @@ automation) is `build-avalonia-ui`.
 
 - As `design-native-ui` "Design tool", including a tool reached over MCP. A
   new value lands in the value authority first, then in the tool and the
-  theme resources.
+  theme resources; where the repo declares the design tool leads, it starts
+  in the tool and the theme resources are generated, never hand-edited.
 
 ## Tokens
 
@@ -65,7 +66,8 @@ the Light and Dark themes.
 A design is ready for a builder when it has `design-native-ui` "Hand-off
 checklist", in Avalonia's terms:
 
-1. Boards for every theme, state, density, and window size, each linked where
+1. Boards for every theme, state, density, window size, device, and
+   orientation, each linked where
    it lives (a view-mode link and an exported PNG for a tool board).
 2. Every token cited by name, and each new value added to the value
    authority (the design-system page, or the tool's exported tokens when the

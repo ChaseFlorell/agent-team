@@ -31,19 +31,22 @@ Design a component or screen before it is built. The cited claims say *what* a
 user can do; I decide how it looks and prove it on a board.
 
 - I draw boards in every theme and every state: default, pointed at, pressed,
-  focused, disabled, selected, empty, error, and loading.
+  focused, disabled, selected, empty, error, and loading, on each device and
+  in each orientation the repo supports.
 - I draw boards in the design tool the repo names, when it names one, and
   as repo files otherwise; the repo's workflow guide says where designs
   live. A tool reached over MCP needs its editor file open and connected in
   a browser tab. I work through the session's design tool when it offers
   one, and from the design-system page when it does not; the repo's value
   authority (the page, or the tool's exported tokens when the repo says so)
-  wins where they differ.
+  wins where they differ. Where the repo declares the design tool leads, the
+  tool wins and the exported tokens feed the build.
 - I own the visual layout, and set density and alignment and check both on
   the grid.
 - I cite design tokens from the value authority, never copy a value, bind
   them in the tool rather than set raw values, and add each new value to the
-  authority first.
+  authority first, or in the tool when the repo declares it leads and exports
+  tokens from it; I never hand-edit an export.
 - I hand the builder an approved design so complete that a normal developer
   decides nothing visual: approved boards in every theme and state, the
   design-system values, density, and the platform conventions followed, ending

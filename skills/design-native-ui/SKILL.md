@@ -39,6 +39,12 @@ accessibility semantics, and copy are `design-ux-flow`.
   that authority, a mismatch is a question for the person, not a pick. A
   new value lands in the authority first, then in the tool and the stack's
   theme resources.
+- **A repo that declares the design tool leads and exports tokens from it**:
+  a new value starts in the tool, the stack's theme resources are generated
+  from the export, and an export is never hand-edited. The repo's workflow
+  guide says what the exported tokens hold until the next export, and where a
+  builder gets a value the export lacks. The design-system page then holds
+  prose rules, not values.
 - Link each board in the hand-off; a tool board is checked against a
   real-theme screenshot before it is approved.
 - No such tool? Work from the design-system page and the real themes.
@@ -82,7 +88,9 @@ Penpot is the reference case; the same holds for any tool driven this way.
   cited from the design-system page, never copied as a literal.
 - Every theme the product supports defines the same token keys.
 - A new value goes on the design-system page first, then into the stack's
-  theme resources.
+  theme resources, unless the repo declares the design tool leads (see
+  "Design tool"): then it starts in the tool, and the theme resources are
+  generated, never hand-edited.
 
 ## Components
 
@@ -119,6 +127,9 @@ theme.
   the layout resizes between them.
 - Portrait and landscape where the platform rotates; say which, if either, is
   out of scope.
+- A repo may define its form factors as devices, not widths (for example
+  desktop, tablet in each orientation, phone): follow its list, and a device
+  follows its own boards whatever its width.
 - Keep content and controls inside the safe areas: clear of notches, rounded
   corners, the home indicator, and the system bars.
 - Spacing and sizes sit on one grid; align edges and text baselines on it.
@@ -139,7 +150,7 @@ implements them through the platform's accessibility APIs. The designer draws:
 ## Boards
 
 - Render each component and screen in every theme, every state, at each
-  density and window size, from the real themes or the design tool, never a
+  density, window size, device, and orientation the repo supports, from the real themes or the design tool, never a
   hand-drawn mock-up. Where the repo names a tool, the boards are drawn in it.
 - Review boards as screenshots; the builder's screenshots must match them.
 
@@ -147,11 +158,12 @@ implements them through the platform's accessibility APIs. The designer draws:
 
 A design is ready for a builder when it has:
 
-1. Boards for every theme, state, density, and window size, each linked where
+1. Boards for every theme, state, density, window size, device, and
+   orientation, each linked where
    it lives (a view-mode link and an exported PNG for a tool board).
 2. Every token cited by name, and each new value added to the value
    authority (the design-system page, or the tool's exported tokens when the
-   repo says so).
+   repo says so), or, where the design tool leads, made in the tool.
 3. Per component, the token each state uses in each theme, and whether it is
    templated or drawn.
 4. A link to ux's hand-off: the accessible names, roles, focus order, and
