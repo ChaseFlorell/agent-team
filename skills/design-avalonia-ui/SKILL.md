@@ -21,8 +21,9 @@ automation) is `build-avalonia-ui`.
 
 ## Design tool
 
-- As `design-native-ui` "Design tool". A new value lands on the page first,
-  then in the tool and the theme resources.
+- As `design-native-ui` "Design tool", including a tool reached over MCP. A
+  new value lands in the value authority first, then in the tool and the
+  theme resources.
 
 ## Tokens
 
@@ -65,9 +66,10 @@ A design is ready for a builder when it has `design-native-ui` "Hand-off
 checklist", in Avalonia's terms:
 
 1. Boards for every theme, state, density, and window size, each linked where
-   it lives.
-2. Every token cited by name, and each new value added to the design-system
-   page.
+   it lives (a view-mode link and an exported PNG for a tool board).
+2. Every token cited by name, and each new value added to the value
+   authority (the design-system page, or the tool's exported tokens when the
+   repo says so).
 3. Per component, the token each state uses in each variant, and whether it
    is templated or drawn.
 4. A link to ux's hand-off: the automation names, focus order, and copy keys.

@@ -19,6 +19,8 @@ components, and tests, and wins where they differ. For a web UI use
   checklist"): the token each state uses per component, in each variant, and
   whether it is templated or drawn. The control themes and selectors are
   yours.
+- A tool board is read as `build-native-ui` "Read first" says, and its link
+  cited.
 
 ## Resources
 
