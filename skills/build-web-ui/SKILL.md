@@ -20,6 +20,10 @@ decides, and a gap goes upstream.
   (`design-web-ui` "Hand-off checklist"). Either incomplete or ambiguous?
   Stop and send the question to ux or the designer; never guess.
 - The code graph or index, and the design system's real components and tokens.
+- A board in a design tool is read through the tool's inspect or code view
+  (over MCP where the session offers it), never from the PNG alone; cite its
+  view-mode link in the pull request and the report. Where the repo says the
+  tool's exported tokens are the value authority, bind to those tokens.
 - The focused skills for the UI, the design system, and localization.
 
 ## Build
@@ -47,5 +51,5 @@ decides, and a gap goes upstream.
 
 - The files changed and the test results.
 - A screenshot of each changed screen, in the primary language, beside its
-  board.
+  board, and the board links cited.
 - Any gap sent upstream, and its answer.

@@ -42,6 +42,8 @@ to the designer and the builder.
   with its entry and exit, errors, empty, loading), the focus order, the
   keyboard and screen-reader semantics, and the copy keys in every language.
   It ends in a checklist the builder ticks.
+- Where the repo keeps designs in a design tool, my hand-off links the
+  designer's boards by their view-mode link and never restates their values.
 - The hand-off lives in the issue or pull request. My only repository writes
   are the copy entries in the locale catalogues; the builder wires them in.
 

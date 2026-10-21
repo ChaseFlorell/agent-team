@@ -27,16 +27,40 @@ accessibility semantics, and copy are `design-ux-flow`.
 
 ## Design tool
 
+- **Where boards live**: in the design tool the repo names, when it names one
+  (its workflow guide says where designs live); otherwise as repo files,
+  from the design-system page and the real themes. Never guess a tool.
 - When the session offers a design tool or design-system connector, use it:
   read tokens and components from it and render boards in it.
 - Boards there use the project's tokens by name, never copied values, and
   synthetic data only: nothing real leaves the project.
-- The design-system page wins where the tool differs; a mismatch is a question
-  for the person, not a pick. A new value lands on the page first, then in the
-  tool and the stack's theme resources.
+- **Value authority**: the design-system page, or, when the repo says so,
+  the tokens exported from the tool (W3C DTCG). Where the tool differs from
+  that authority, a mismatch is a question for the person, not a pick. A
+  new value lands in the authority first, then in the tool and the stack's
+  theme resources.
 - Link each board in the hand-off; a tool board is checked against a
   real-theme screenshot before it is approved.
 - No such tool? Work from the design-system page and the real themes.
+
+### A design tool reached over MCP
+
+Penpot is the reference case; the same holds for any tool driven this way.
+
+- The tool's editor file must be open and MCP-connected in a browser tab. No
+  connection? Stop and tell the person; never fall back to repo files for a
+  repo that names the tool.
+- Use the tool's own model, never a parallel one:
+  - **Tokens** with sets and themes (a theme per supported theme), bound to
+    properties; no raw value where a token exists.
+  - **Shared libraries** for components and tokens; reuse before drawing new.
+  - **Components with variants**, one per state, density, and theme axis.
+  - **Flex or grid layout**, so boards resize as the build will.
+  - **Slash naming** for tokens, components, and variants
+    (`group/name/variant`), matching the design-system page.
+- **Hand-off**: a view-mode link to each board plus an exported PNG of it.
+  The builder reads the link; the PNG is the screenshot the build is
+  checked against.
 
 ## Platform conventions
 
@@ -116,7 +140,7 @@ implements them through the platform's accessibility APIs. The designer draws:
 
 - Render each component and screen in every theme, every state, at each
   density and window size, from the real themes or the design tool, never a
-  hand-drawn mock-up.
+  hand-drawn mock-up. Where the repo names a tool, the boards are drawn in it.
 - Review boards as screenshots; the builder's screenshots must match them.
 
 ## Hand-off checklist
@@ -124,9 +148,10 @@ implements them through the platform's accessibility APIs. The designer draws:
 A design is ready for a builder when it has:
 
 1. Boards for every theme, state, density, and window size, each linked where
-   it lives.
-2. Every token cited by name, and each new value added to the design-system
-   page.
+   it lives (a view-mode link and an exported PNG for a tool board).
+2. Every token cited by name, and each new value added to the value
+   authority (the design-system page, or the tool's exported tokens when the
+   repo says so).
 3. Per component, the token each state uses in each theme, and whether it is
    templated or drawn.
 4. A link to ux's hand-off: the accessible names, roles, focus order, and

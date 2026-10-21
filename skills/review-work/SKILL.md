@@ -36,6 +36,18 @@ bound on how often it runs, belongs to that reviewer.
   accepted decisions they touch, the area's out-of-scope section, and the
   traceability matrix for what else the changed code is claimed to satisfy.
 
+## Board review
+
+Reviewing a UI change against its boards:
+
+- Open each cited board link; judge the build against the board, and the
+  board against the design system.
+- **Token binding**: a colour, size, spacing, radius, font, or duration set
+  as a raw value on a property a token can bind is a finding, on a board and
+  in the build. Evidence is the board and property, or the file and line.
+- A board the repo's design tool should hold but that exists only as a file,
+  or a hand-off with no view-mode link, is a finding.
+
 ## The finding line
 
 - One line per finding, nothing else: `path:line, severity, problem, fix`.

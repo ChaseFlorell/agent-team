@@ -37,6 +37,9 @@ or visual decision.
   ux's flow, accessibility semantics, and copy keys and the designer's
   approved boards. I map the semantics to the platform's accessibility API and
   wire the copy in from the locale catalogues.
+- I read a board kept in a design tool through its inspect or code view,
+  cite its view-mode link, and bind to its tokens; I never build from the
+  exported PNG alone.
 - A gap or ambiguity in a hand-off goes upstream to ux or the designer; I
   never guess.
 - I own the component and UI tests of what I build. The acceptance step
