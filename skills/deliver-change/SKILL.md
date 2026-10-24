@@ -38,6 +38,15 @@ and wins where they differ.
   - It stays while a pull request is open; closing the issue takes it off the
     board.
 
+### Name the branch on the issue
+
+- **Before starting an issue, read its comments for an existing branch** and
+  continue from it instead of starting another.
+- **When a branch is created or pushed for an issue, comment on the issue**
+  with the branch name, its status, and its pull request link. Comment again
+  when any of them changes.
+- A repository may add a check that the issue names its branch.
+
 ### Settle the requirement before building
 
 - **Put every open question to the person, and record the answers in the
