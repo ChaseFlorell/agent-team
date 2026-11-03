@@ -20,7 +20,7 @@ differ.
 | `database-administrator` | Jane | PostgreSQL schema, EF Core mapping, migrations |
 | `spec-reviewer` | Jessica | code reviewer — a diff against its claims and decisions |
 | `critic` | Karen | design reviewer — a plan before it is built |
-| `adversary` | Kyle | security engineer — attacks a change before it merges |
+| `verifier` | Becky | verification engineer — proves or disproves a change with repros and mechanical checks |
 | `auditor` | Ashley | compliance auditor — the whole repository at rest |
 | `babysitter` | Kristy | build babysitter — watches pull requests and builds, classifies each failure, routes it |
 | `ai-author` | Emily | maintains agent instructions |
@@ -30,8 +30,8 @@ preloads, all under `skills/`. An agent with no `tools` key inherits every tool
 the session offers, connectors included; the designer relies on that to reach
 a design tool, so a `tools` list added to it must keep those.
 
-The `babysitter` guards its commands with a frontmatter hook, so spawn it as a
-plain subagent, never as an agent-team teammate; teammates get no hooks.
+The `babysitter` and the `verifier` guard their commands with a frontmatter hook, so spawn them as
+plain subagents, never as an agent-team teammate; teammates get no hooks.
 
 ## Team skills
 
@@ -55,6 +55,7 @@ plain subagent, never as an agent-team teammate; teammates get no hooks.
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
 | `spec-driven-development` | the artifact chain, the specification directory, feature areas, constraint pages, ADRs, conventions, lessons, the glossary, the generated index, and the generator that creates and checks them all | starting a project on the method, or writing a scenario, ADR, convention, or lesson |
 | `test-from-scenarios` | scenario tags, step definitions from the scenario, seeded data, pinned containers | test changes or behaviour that needs verification |
+| `verify-change` | proving a change with evidence: reproductions that ran, mechanical checks with their bounds, probes kept out of every repository | verifying a change before it merges |
 | `watch-builds` | watching pull requests and builds: states, logs, classifying a failure, baselines, contention, routing, re-run and cancel limits | watching a pull request's checks, triaging a red or hung run, or finding why a suite is slow |
 | `write-agent-instructions` | the agent-file shape, style rules, and the editing procedure that loses no rule | adding or changing instructions, a skill, or a role agent, or auditing their shape and style |
 

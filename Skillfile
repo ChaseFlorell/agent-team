@@ -13,7 +13,6 @@
 install  claude-code  global
 
 # --- Agents ---
-local  agent  agents/adversary.md
 local  agent  agents/ai-author.md
 local  agent  agents/auditor.md
 local  agent  agents/babysitter.md
@@ -27,6 +26,7 @@ local  agent  agents/spec-author.md
 local  agent  agents/spec-reviewer.md
 local  agent  agents/test-writer.md
 local  agent  agents/ux.md
+local  agent  agents/verifier.md
 
 # --- Skills ---
 # Declarative Gherkin scenario design; spec-author preloads it.
@@ -53,5 +53,6 @@ local  skill  review-work  skills/review-work/SKILL.md
 # A directory, not a file: this skill ships templates and a generator beside its SKILL.md.
 local  skill  spec-driven-development  skills/spec-driven-development
 local  skill  test-from-scenarios  skills/test-from-scenarios/SKILL.md
+local  skill  verify-change  skills/verify-change/SKILL.md
 local  skill  watch-builds  skills/watch-builds/SKILL.md
 local  skill  write-agent-instructions  skills/write-agent-instructions/SKILL.md

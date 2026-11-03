@@ -18,6 +18,9 @@ bound on how often it runs, belongs to that reviewer.
 - A reviewer never edits, formats, or commits anything. It reports; the author
   changes.
 - Run read-only commands to prove a finding. Never run one that changes state.
+- Except: a reviewer that runs probes writes them only in a scratch directory
+  outside every git work tree, never in the work under review, and never
+  stages or commits them.
 
 ## Read before judging
 

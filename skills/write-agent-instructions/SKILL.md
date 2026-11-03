@@ -43,9 +43,9 @@ The one home for how an instruction file is written; others link here.
 - **Frontmatter**: `name` (the role, never changed: it routes), `description`,
   `model`, `effort`, and where needed `tools`, `isolation`, and `skills`.
   - The description opens with the team role, then the persona name in
-    parentheses: "The team's security engineer (Kyle). …". It then says what
+    parentheses: "The team's verification engineer (Becky). …". It then says what
     the agent does and when to pick it over its neighbours, and closes with
-    the spawn name: "Spawn it named `kyle-<task>` (e.g. `kyle-login-flow`),
+    the spawn name: "Spawn it named `becky-<task>` (e.g. `becky-login-flow`),
     never by role." An orchestrator names a spawn from the description alone,
     so the persona name must be spelled out there.
   - `skills` lists generic skills only. A role that edits files preloads

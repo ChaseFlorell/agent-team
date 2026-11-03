@@ -1,31 +1,15 @@
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
+import { hookScript } from './hook-script.ts'
 
 const hasJq = spawnSync('jq', ['--version']).status === 0
 const skip = hasJq ? false : 'jq is not installed'
 
-/** The PreToolUse hook's `command: |` block scalar from the babysitter agent, dedented. */
-function hookScript(): string {
-	const lines = readFileSync('agents/babysitter.md', 'utf8').split('\n')
-	const open = lines.findIndex((line) => /^\s*command:\s*\|[+-]?\s*$/.test(line))
-	assert.notEqual(open, -1, 'agents/babysitter.md has no `command: |` hook block')
-	const parent = /^ */.exec(lines[open])![0].length
-	const body: string[] = []
-	for (const line of lines.slice(open + 1)) {
-		if (line.trim() !== '' && /^ */.exec(line)![0].length <= parent) break
-		body.push(line)
-	}
-	const first = body.find((line) => line.trim() !== '')!
-	const indent = /^ */.exec(first)![0].length
-	return body.map((line) => line.slice(indent)).join('\n')
-}
-
 /** Runs the hook as Claude Code would: the tool call as JSON on stdin, through `sh -c`. */
 function run(command: string): number | null {
 	const input = JSON.stringify({ tool_input: { command } })
-	return spawnSync('sh', ['-c', hookScript()], { input, encoding: 'utf8' }).status
+	return spawnSync('sh', ['-c', hookScript('agents/babysitter.md')], { input, encoding: 'utf8' }).status
 }
 
 const blocked = [
