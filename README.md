@@ -21,6 +21,7 @@ differ.
 | `spec-reviewer` | Jessica | code reviewer — a diff against its claims and decisions |
 | `critic` | Karen | design reviewer — a plan before it is built |
 | `verifier` | Becky | verification engineer — proves or disproves a change with repros and mechanical checks |
+| `records-keeper` | Heather | records keeper — researches open and closed issues and pull requests, and the specification, and returns a cited dossier and advice; read-only |
 | `auditor` | Ashley | compliance auditor — the whole repository at rest |
 | `babysitter` | Kristy | build babysitter — watches pull requests and builds, classifies each failure, routes it |
 | `ai-author` | Emily | maintains agent instructions |
@@ -30,7 +31,7 @@ preloads, all under `skills/`. An agent with no `tools` key inherits every tool
 the session offers, connectors included; the designer relies on that to reach
 a design tool, so a `tools` list added to it must keep those.
 
-The `babysitter` and the `verifier` guard their commands with a frontmatter hook, so spawn them as
+The `babysitter`, the `verifier`, and the `records-keeper` guard their commands with a frontmatter hook, so spawn them as
 plain subagents, never as an agent-team teammate; teammates get no hooks.
 
 ## Team skills
@@ -52,6 +53,7 @@ plain subagents, never as an agent-team teammate; teammates get no hooks.
 | `design-web-ui` | the designer's web UI: boards for every state and width, builder hand-off | designing or changing the look of a web screen or component |
 | `manage-ef-core-migrations` | EF Core migrations: generated, never edited, seeded, baselined, squashed | adding a table, column, index, constraint, or seed |
 | `postgres-dba` | PostgreSQL administration: design, audit, evolve, seed, operate | schema design, audit, column types, slow queries, locks |
+| `research-records` | researching the record: wide search of open and closed issues and pull requests, deep reads, the specification lookup, a cited dossier with one piece of advice | checking whether an issue exists, was decided, or should be filed, extended, reopened, or marked a duplicate |
 | `review-work` | what every reviewing role shares: read-only, one finding per line, severities | reviewing a plan, a diff, or a working tree |
 | `spec-driven-development` | the artifact chain, the specification directory, feature areas, constraint pages, ADRs, conventions, lessons, the glossary, the generated index, and the generator that creates and checks them all | starting a project on the method, or writing a scenario, ADR, convention, or lesson |
 | `test-from-scenarios` | scenario tags, step definitions from the scenario, seeded data, pinned containers | test changes or behaviour that needs verification |

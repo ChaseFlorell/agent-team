@@ -71,6 +71,18 @@ and wins where they differ.
 
 ### File a new issue
 
+**Research the record first — mandatory.** No `gh issue create` until the
+records keeper has researched open **and closed** issues and returned her
+advice.
+
+- **The lead spawns the records keeper.** Builders running as subagents have no
+  Agent tool; any other filer hands its draft issue to the lead instead of
+  filing.
+- **Follow the advice.** `extend`, `reopen`, `duplicate`, or `already decided`
+  means no new issue. To file against the advice, put the dossier link and the
+  reason in the issue body.
+- **One dossier per filing pass**, including follow-ups found mid-change.
+
 **Milestone and labels are mandatory — no exceptions.** Pass both on
 `gh issue create`, never as a follow-up:
 
@@ -86,8 +98,8 @@ and wins where they differ.
 #### Relationships
 
 **Wire relationships when the issue is created, not later.** Every new issue is
-checked against open issues (`gh issue list --state open`) and against every
-other issue filed in the same pass. Set each relationship that genuinely
+checked against the dossier above and against every other issue filed in the
+same pass. Set each relationship that genuinely
 exists, with GitHub's native relations (`gh api graphql`; there is no `blocked`
 label), not only prose. A link known at filing and left unset is lost.
 

@@ -131,7 +131,7 @@ hooks:
               first = 1; any = 0
               for (p = st; p <= e; p++) {
                 w = tk[p]
-                if (w ~ /^GIT_[A-Za-z0-9_]*=/) die("a GIT_* assignment", "Git environment variables can run commands.")
+                if (w ~ /^(GIT_[A-Za-z0-9_]*|GH_BROWSER|BROWSER|GH_PAGER|PAGER)=/) die("a GIT_*, browser, or pager assignment", "Those environment variables can run commands.")
                 if (w ~ /^[A-Za-z_][A-Za-z0-9_]*=/) continue
                 if (!(first || any)) { if (w ~ /^-(exec|execdir|ok|okdir)$/) any = 1; continue }
                 first = 0
